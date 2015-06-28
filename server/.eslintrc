@@ -1,0 +1,34 @@
+{
+    "ecmaFeatures": {
+        "arrowFunctions": true,
+        "binaryLiterals": false,
+        "blockBindings": true,
+        "classes": true,
+        "defaultParams": true,
+        "destructuring": true,
+        "forOf": true,
+        "generators": true,
+        "modules": true,
+        "objectLiteralComputedProperties": true,
+        "objectLiteralDuplicateProperties": false,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "octalLiterals": false,
+        "regexUFlag": true,
+        "regexYFlag": true,
+        "restParams": true,
+        "spread": true,
+        "superInFunctions": true,
+        "templateStrings": true,
+        "unicodeCodePointEscapes": true,
+        "globalReturn": false,
+        "jsx": false
+    },
+    "rules": {
+        /* ECMAScript 6 *******************************************************/
+
+        "generator-star-spacing": 2, // enforce the spacing around the * in generator functions (off by default)
+        "no-var": 2,                 // require let or const instead of var (off by default)
+        "object-shorthand": 2        // require method and property shorthand syntax for object literals (off by default)
+    }
+}

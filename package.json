@@ -1,0 +1,27 @@
+{
+    "private": true,
+    "scripts": {
+        "build": "gulp && NODE_ENV=production webpack --colors --progress",
+        "dev": "node server.js",
+        "prod": "npm run build && NODE_ENV=production node server.js"
+    },
+    "dependencies": {
+        "babel": "latest",
+        "babel-core": "latest",
+        "babel-loader": "latest",
+        "baobab": "latest",
+        "baobab-react": "latest",
+        "bluebird": "latest",
+        "eslint": "latest",
+        "eslint-plugin-react": "latest",
+        "express": "latest",
+        "gulp": "latest",
+        "gulp-eslint": "latest",
+        "http-proxy": "latest",
+        "node-libs-browser": "latest",
+        "react": "latest",
+        "string-template": "latest",
+        "webpack": "latest",
+        "webpack-dev-server": "latest"
+    }
+}
