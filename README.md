@@ -6,7 +6,7 @@ Isomorphic JavaScript Boilerplate with React and [Baobab](https://github.com/Yom
 
 ## Getting Started
 
-Downloading boilerplate files:
+Downloading boilerplate files (existing files will be overwritten):
 
 ```sh
 cd path_to_my_new_project/
