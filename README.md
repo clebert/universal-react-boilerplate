@@ -4,13 +4,31 @@
 
 Isomorphic JavaScript Boilerplate with React and [Baobab](https://github.com/Yomguithereal/baobab).
 
-## Usage
+## Getting Started
+
+Downloading boilerplate files:
 
 ```sh
 cd path_to_my_new_project/
+
+curl -#L https://github.com/clebert/isomorphic-react-boilerplate/tarball/master \
+| tar -xzv --strip-components 1
 ```
 
+Installing npm dependencies:
+
 ```sh
-curl -#L https://github.com/clebert/isomorphic-react-boilerplate/tarball/master \
-| tar -xzv --strip-components 1 --exclude=README.md
+npm install
+```
+
+Starting local development server at [localhost:3000](http://localhost:3000/):
+
+```sh
+npm run dev
+```
+
+Starting local production server at [localhost:8080](http://localhost:8080/):
+
+```sh
+npm run prod
 ```
