@@ -1,4 +1,4 @@
-import App from './components/app.js';
+import App from './components/App.js';
 import Baobab from 'baobab';
 import React from 'react';
 import {root} from 'baobab-react/higher-order.js';

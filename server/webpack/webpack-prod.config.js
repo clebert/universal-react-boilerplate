@@ -1,11 +1,11 @@
 import {resolve} from 'path';
 import Webpack from 'webpack';
 
-const REACT_PATH = resolve(__dirname, '../node_modules/react/dist/react.min.js');
+const REACT_PATH = resolve(__dirname, '../../node_modules/react/dist/react.min.js');
 
 export default {
     entry: [
-        resolve(__dirname, '../app/main.js')
+        resolve(__dirname, '../../app/app.js')
     ],
     module: {
         loaders: [
@@ -19,7 +19,7 @@ export default {
     },
     output: {
         filename: 'app.js',
-        path: resolve(__dirname, '../public/scripts/')
+        path: resolve(__dirname, '../../public/scripts/')
     },
     plugins: [
         new Webpack.optimize.UglifyJsPlugin({

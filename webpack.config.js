@@ -2,4 +2,4 @@
 
 require('babel/register')();
 
-module.exports = require('./server/webpack-prod.config.js');
+module.exports = require('./server/webpack/webpack-prod.config.js');

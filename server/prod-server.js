@@ -1,14 +1,19 @@
 import {APP_PROD_SERVER_PORT} from './config.js';
 import {createServer} from 'http';
 import express from 'express';
+import {loadData} from './store.js';
+import {renderApp} from './renderer.js';
 import {resolve} from 'path';
-import sendHtml from './send-html.js';
 
 const app = express();
 
 app.use(express.static(resolve(__dirname, '../public/')));
 
-app.get('/', sendHtml);
+app.get('/', function (request, response) {
+    loadData().then(function (data) {
+        response.type('html').send(renderApp(data));
+    });
+});
 
 const appServer = createServer(app);
 

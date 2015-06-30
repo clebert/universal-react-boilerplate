@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
 import {branch} from 'baobab-react/higher-order.js';
+import React, {Component} from 'react';
 
 class Hello extends Component {
     render() {

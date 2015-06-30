@@ -2,11 +2,12 @@ import {APP_DEV_SERVER_PORT, WEBPACK_SERVER_PORT} from './config.js';
 import {createProxyServer} from 'http-proxy';
 import {createServer} from 'http';
 import express from 'express';
+import {loadData} from './store.js';
+import {renderApp} from './renderer.js';
 import {resolve} from 'path';
-import sendHtml from './send-html.js';
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
-import webpackDevConfig from './webpack-dev.config.js';
+import webpackDevConfig from './webpack/webpack-dev.config.js';
 
 const proxyServer = createProxyServer({
     changeOrigin: true,
@@ -32,7 +33,11 @@ app.all('/socket.io/*', proxyServer.web.bind(proxyServer));
 
 app.use(express.static(resolve(__dirname, '../public/')));
 
-app.get('/', sendHtml);
+app.get('/', function (request, response) {
+    loadData().then(function (data) {
+        response.type('html').send(renderApp(data));
+    });
+});
 
 const appServer = createServer(app);
 
