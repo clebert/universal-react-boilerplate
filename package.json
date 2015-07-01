@@ -20,6 +20,7 @@
         "http-proxy": "latest",
         "node-libs-browser": "latest",
         "react": "latest",
+        "react-bootstrap": "latest",
         "string-template": "latest",
         "webpack": "latest",
         "webpack-dev-server": "latest"

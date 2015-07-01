@@ -5,16 +5,20 @@ import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {root} from 'baobab-react/higher-order.js';
 
-const APP_PATH = '../app/components/App.js';
+const appPath = '../app/components/App.js';
 
-const App = (process.env.NODE_ENV === 'production') ? require(APP_PATH) : null;
+const App = (process.env.NODE_ENV === 'production') ? require(appPath) : null;
 
 const createHtml = compile(readFileSync(resolve(__dirname, '../app/app.html')).toString());
 
 const importApp = function () {
-    delete require.cache[resolve(__dirname, APP_PATH)];
+    Object.keys(require.cache).filter(function (key) {
+        return /\/app\/components\/[A-Za-z]+\.js$/.test(key);
+    }).forEach(function (key) {
+        delete require.cache[key];
+    });
 
-    return require(APP_PATH);
+    return require(appPath);
 };
 
 export const renderApp = function (data) {
