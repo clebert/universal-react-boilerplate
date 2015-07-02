@@ -1,4 +1,4 @@
-import {APP_DEV_SERVER_PORT, WEBPACK_SERVER_PORT} from './config.js';
+import {APP_SERVER_DEV_PORT, WEBPACK_SERVER_PORT} from '../resources/server.config.js';
 import {createProxyServer} from 'http-proxy';
 import {createServer} from 'http';
 import express from 'express';
@@ -7,7 +7,7 @@ import {renderApp} from './renderer.js';
 import {resolve} from 'path';
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
-import webpackDevConfig from './webpack/webpack-dev.config.js';
+import webpackDevConfig from '../resources/webpack-dev.config.js';
 
 const proxyServer = createProxyServer({
     changeOrigin: true,
@@ -31,7 +31,7 @@ const app = express();
 app.all('/scripts/*', proxyServer.web.bind(proxyServer));
 app.all('/socket.io/*', proxyServer.web.bind(proxyServer));
 
-app.use(express.static(resolve(__dirname, '../public/')));
+app.use(express.static(resolve(__dirname, '../../public/')));
 
 app.get('/', function (request, response) {
     loadData().then(function (data) {
@@ -43,6 +43,6 @@ const appServer = createServer(app);
 
 appServer.on('upgrade', proxyServer.ws.bind(proxyServer));
 
-appServer.listen(APP_DEV_SERVER_PORT, function () {
-    console.log(`Application server is running on port ${APP_DEV_SERVER_PORT}.`);
+appServer.listen(APP_SERVER_DEV_PORT, function () {
+    console.log(`Application server is running on port ${APP_SERVER_DEV_PORT}.`);
 });

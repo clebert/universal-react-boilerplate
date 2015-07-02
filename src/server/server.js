@@ -1,4 +1,4 @@
-import {APP_PROD_SERVER_PORT} from './config.js';
+import {APP_SERVER_PORT} from '../resources/server.config.js';
 import {createServer} from 'http';
 import express from 'express';
 import {loadData} from './store.js';
@@ -7,7 +7,7 @@ import {resolve} from 'path';
 
 const app = express();
 
-app.use(express.static(resolve(__dirname, '../public/')));
+app.use(express.static(resolve(__dirname, '../../public/')));
 
 app.get('/', function (request, response) {
     loadData().then(function (data) {
@@ -17,6 +17,6 @@ app.get('/', function (request, response) {
 
 const appServer = createServer(app);
 
-appServer.listen(APP_PROD_SERVER_PORT, function () {
-    console.log(`Application server is running on port ${APP_PROD_SERVER_PORT}.`);
+appServer.listen(APP_SERVER_PORT, function () {
+    console.log(`Application server is running on port ${APP_SERVER_PORT}.`);
 });

@@ -5,20 +5,20 @@ const REACT_PATH = resolve(__dirname, '../../node_modules/react/dist/react.min.j
 
 export default {
     entry: [
-        resolve(__dirname, '../../app/app.js')
+        resolve(__dirname, '../client/client.js')
     ],
     module: {
         loaders: [
             {
                 exclude: /node_modules/,
                 loader: 'babel',
-                test: /\.js$/
+                test: /\.jsx?$/
             }
         ],
         noParse: [REACT_PATH]
     },
     output: {
-        filename: 'app.js',
+        filename: 'client.js',
         path: resolve(__dirname, '../../public/scripts/')
     },
     plugins: [

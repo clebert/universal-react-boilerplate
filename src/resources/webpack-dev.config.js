@@ -1,4 +1,4 @@
-import {APP_DEV_SERVER_PORT} from '../config.js';
+import {APP_SERVER_DEV_PORT} from './server.config.js';
 import {resolve} from 'path';
 
 const REACT_PATH = resolve(__dirname, '../../node_modules/react/dist/react.js');
@@ -7,21 +7,21 @@ export default {
     debug: true,
     devtool: '#inline-source-map',
     entry: [
-        resolve(__dirname, '../../app/app.js'),
-        `webpack-dev-server/client?http://localhost:${APP_DEV_SERVER_PORT}/`
+        resolve(__dirname, '../client/client.js'),
+        `webpack-dev-server/client?http://localhost:${APP_SERVER_DEV_PORT}/`
     ],
     module: {
         loaders: [
             {
                 exclude: /node_modules/,
                 loader: 'babel',
-                test: /\.js$/
+                test: /\.jsx?$/
             }
         ],
         noParse: [REACT_PATH]
     },
     output: {
-        filename: 'app.js',
+        filename: 'client.js',
         path: resolve(__dirname, '../../public/scripts/'),
         publicPath: '/scripts/'
     },

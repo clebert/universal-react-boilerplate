@@ -3,7 +3,7 @@
 require('babel/register.js')();
 
 if (process.env.NODE_ENV === 'production') {
-    require('./server/prod-server.js');
+    require('./src/server/server.js');
 } else {
-    require('./server/dev-server.js');
+    require('./src/server/server-dev.js');
 }

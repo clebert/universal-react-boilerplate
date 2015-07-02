@@ -2,8 +2,8 @@
     "private": true,
     "scripts": {
         "build": "gulp && NODE_ENV=production webpack --colors --progress",
-        "dev": "node server.js",
-        "prod": "npm run build && NODE_ENV=production node server.js"
+        "start": "NODE_ENV=production node server.js",
+        "start-dev": "node server.js"
     },
     "dependencies": {
         "babel": "latest",
