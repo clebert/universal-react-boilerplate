@@ -1,4 +1,4 @@
-# isomorphic-react-boilerplate
+# Isomorphic React Boilerplate
 
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/clebert/isomorphic-react-boilerplate/master/LICENSE)
 
