@@ -12,7 +12,6 @@
         "babel-loader": "latest",
         "baobab": "latest",
         "baobab-react": "latest",
-        "bluebird": "latest",
         "eslint": "latest",
         "eslint-plugin-react": "latest",
         "express": "latest",

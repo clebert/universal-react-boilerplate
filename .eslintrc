@@ -9,7 +9,7 @@
 
         /* Best Practices *****************************************************/
 
-        "accessor-pairs": 2,             // Enforces getter/setter pairs in objects (off by default)
+        "accessor-pairs": 2,             // enforces getter/setter pairs in objects (off by default)
         "dot-location": [2, "property"], // enforces consistent newlines before or after dots (off by default)
         "guard-for-in": 2,               // make sure for-in loops have an if statement (off by default)
         "no-div-regex": 2,               // disallow division operators explicitly at beginning of regular expression (off by default)

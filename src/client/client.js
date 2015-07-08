@@ -1,4 +1,4 @@
-import App from '../app/App.jsx';
+import App from '../app/app.jsx';
 import Baobab from 'baobab';
 import React from 'react';
 import {root} from 'baobab-react/higher-order.js';

@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 
 const handleChange = function (context, event) {
     context.cursors.fullName.set(event.target.value);
+
     context.tree.commit();
 };
 
