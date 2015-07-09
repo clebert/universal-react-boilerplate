@@ -9,10 +9,12 @@
     "dependencies": {
         "babel": "latest",
         "babel-core": "latest",
+        "babel-eslint": "latest",
         "babel-loader": "latest",
         "baobab": "latest",
         "baobab-react": "latest",
         "eslint": "latest",
+        "eslint-plugin-babel": "latest",
         "eslint-plugin-react": "latest",
         "express": "latest",
         "gulp": "latest",

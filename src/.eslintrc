@@ -24,11 +24,23 @@
         "globalReturn": false,
         "jsx": false
     },
+    "plugins": [
+        "babel"
+    ],
     "rules": {
         /* ECMAScript 6 *******************************************************/
 
-        "generator-star-spacing": 2, // enforce the spacing around the * in generator functions (off by default)
-        "no-var": 2,                 // require let or const instead of var (off by default)
-        "object-shorthand": 2        // require method and property shorthand syntax for object literals (off by default)
+        "constructor-super": 2,    // verify super() callings in constructors (off by default)
+        "no-this-before-super": 2, // disallow to use this/super before super() calling in constructors. (off by default)
+        "no-var": 2,               // require let or const instead of var (off by default)
+        "prefer-const": 2,         // suggest using of const declaration for variables that are never modified after declared (off by default)
+
+        /* ECMAScript 7 *******************************************************/
+
+        "babel/block-scoped-var": 2,       // doesn't complain about export x from "mod"; or export * as x from "mod";
+        "babel/object-shorthand": 2,       // require method and property shorthand syntax for object literals, doesn't fail when using object spread (...obj)
+        "babel/generator-star-spacing": 2, // enforce the spacing around the * in generator functions, handles async/await functions correctly
+        "babel/new-cap": 2,                // ignores capitalized decorators (@Decorator)
+        "babel/space-in-brackets": 2       // doesn't complain about export x from "mod"; or export * as x from "mod";
     }
 }

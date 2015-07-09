@@ -2,9 +2,14 @@
     "env": {
         "node": true
     },
+    "globals": {
+        "console": false
+    },
+    "parser": "babel-eslint",
     "rules": {
         /* Possible Errors ****************************************************/
 
+        "no-console": 0,            // disallow use of console (off by default in the node environment)
         "no-inner-declarations": 0, // disallow function or variable declarations in nested blocks
 
         /* Best Practices *****************************************************/
