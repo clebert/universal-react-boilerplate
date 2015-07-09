@@ -1,6 +1,6 @@
 'use strict';
 
-require('babel/register.js')({stage: 1});
+require('babel/register.js')();
 
 if (process.env.NODE_ENV === 'production') {
     require('./src/server/server.js');

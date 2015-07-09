@@ -11,7 +11,7 @@ export default {
         loaders: [
             {
                 exclude: /node_modules/,
-                loader: 'babel?stage=1',
+                loader: 'babel',
                 test: /\.jsx?$/
             }
         ],
