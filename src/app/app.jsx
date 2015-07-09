@@ -10,7 +10,7 @@ export default class App extends Component {
 
                 <div className="row">
                     <div className="col-xs-12">
-                        <Label bsStyle="info">Powered by <a href="https://github.com/clebert/isomorphic-react-boilerplate">Isomorphic React Boilerplate</a></Label>
+                        <Label bsStyle="info">Powered by <a href="https://github.com/clebert/universal-react-boilerplate">Universal React Boilerplate</a></Label>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,8 @@
-# Isomorphic React Boilerplate
+# Universal React Boilerplate
 
-[![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/clebert/isomorphic-react-boilerplate/master/LICENSE)
+[![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/clebert/universal-react-boilerplate/master/LICENSE)
 
-Isomorphic JavaScript Boilerplate with React and [Baobab](https://github.com/Yomguithereal/baobab).
+[Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) JavaScript Boilerplate with React and [Baobab](https://github.com/Yomguithereal/baobab).
 
 ## Getting Started
 
@@ -13,7 +13,7 @@ cd path_to_my_new_project/
 Downloading boilerplate files (existing files will be overwritten):
 
 ```sh
-curl -#L https://github.com/clebert/isomorphic-react-boilerplate/tarball/master \
+curl -#L https://github.com/clebert/universal-react-boilerplate/tarball/master \
 | tar -xzv --strip-components 1
 ```
 

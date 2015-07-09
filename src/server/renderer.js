@@ -27,6 +27,6 @@ export const renderApp = function (data) {
     return createHtml({
         app: React.renderToString(React.createElement(root(App || importApp(), tree))),
         data: JSON.stringify(data),
-        title: 'Isomorphic React Boilerplate'
+        title: 'Universal React Boilerplate'
     });
 };
