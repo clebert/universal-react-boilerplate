@@ -1,7 +1,7 @@
 import {resolve} from 'path';
-import Webpack from 'webpack';
+import webpack from 'webpack';
 
-const REACT_PATH = resolve(__dirname, '../../node_modules/react/dist/react.min.js');
+const reactPath = resolve(__dirname, '../../node_modules/react/dist/react.min.js');
 
 export default {
     entry: [
@@ -15,19 +15,19 @@ export default {
                 test: /\.jsx?$/
             }
         ],
-        noParse: [REACT_PATH]
+        noParse: [reactPath]
     },
     output: {
         filename: 'client.js',
         path: resolve(__dirname, '../../public/scripts/')
     },
     plugins: [
-        new Webpack.optimize.UglifyJsPlugin({
+        new webpack.optimize.UglifyJsPlugin({
             compress: {warnings: false}
         })
     ],
     resolve: {
-        alias: {react: REACT_PATH}
+        alias: {react: reactPath}
     },
     target: 'web'
 };

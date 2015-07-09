@@ -21,6 +21,7 @@
         "node-libs-browser": "latest",
         "react": "latest",
         "react-bootstrap": "latest",
+        "react-hot-loader": "latest",
         "string-template": "latest",
         "webpack": "latest",
         "webpack-dev-server": "latest"

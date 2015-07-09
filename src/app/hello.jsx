@@ -1,7 +1,7 @@
 import {branch} from 'baobab-react/higher-order.js';
 import Input from 'react-bootstrap/lib/Input.js';
 import Panel from 'react-bootstrap/lib/Panel.js';
-import PropTypes from 'baobab-react/prop-types.js';
+import propTypes from 'baobab-react/prop-types.js';
 import React, {Component} from 'react';
 
 const handleChange = function (context, event) {
@@ -44,7 +44,7 @@ class Hello extends Component {
     }
 }
 
-Hello.contextTypes = {cursors: PropTypes.cursors, tree: PropTypes.baobab};
+Hello.contextTypes = {cursors: propTypes.cursors, tree: propTypes.baobab};
 
 Hello.displayName = 'Hello';
 

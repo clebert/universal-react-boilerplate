@@ -1,4 +1,4 @@
-import {APP_SERVER_PORT} from '../resources/server.config.js';
+import {APP_SERVER_ICON, APP_SERVER_PORT} from '../resources/server.config.js';
 import {createServer} from 'http';
 import express from 'express';
 import {renderApp} from './renderer.js';
@@ -15,5 +15,5 @@ app.get('/', function (request, response) {
 const appServer = createServer(app);
 
 appServer.listen(APP_SERVER_PORT, function () {
-    console.log(`Application server is running on port ${APP_SERVER_PORT}.`);
+    console.log(`${APP_SERVER_ICON}  Application server is running on port ${APP_SERVER_PORT}.`);
 });
