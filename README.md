@@ -43,11 +43,15 @@ npm run start-dev
 
 ## Linting Source Code
 
+This command will be automatically executed right before a ```git commit```.
+
 ```sh
 npm run lint
 ```
 
 ## Building Source Code
+
+This command will be automatically executed right before a ```git commit```.
 
 ```sh
 npm run build
