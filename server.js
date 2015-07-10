@@ -2,8 +2,8 @@
 
 require('babel/register.js')();
 
-if (process.env.NODE_ENV === 'production') {
-    require('./src/server/server.js');
-} else {
-    require('./src/server/server-dev.js');
+require('./src/server/server.js');
+
+if (process.env.NODE_ENV !== 'production') {
+    require('./src/server/webpack-server.js');
 }
