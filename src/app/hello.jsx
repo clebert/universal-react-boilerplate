@@ -14,7 +14,7 @@ class Hello extends Component {
     constructor() {
         super();
 
-        this.handleChange = (event) => handleChange(this.context, event);
+        this.handleChange = event => handleChange(this.context, event);
     }
 
     render() {

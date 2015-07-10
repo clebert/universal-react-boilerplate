@@ -23,12 +23,12 @@ Installing npm dependencies:
 npm install
 ```
 
-## Building And Starting Production Server
+## Starting Production Server
 
 The production server will run on [localhost:8080](http://localhost:8080/).
 
 ```sh
-npm run build && npm run start
+npm run start
 ```
 
 ## Starting Development Server
@@ -43,4 +43,10 @@ npm run start-dev
 
 ```sh
 npm run lint
+```
+
+## Building Source Code
+
+```sh
+npm run build
 ```
