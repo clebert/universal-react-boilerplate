@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "build": "NODE_ENV=production webpack --colors --progress",
-        "lint": "./node_modules/.bin/gulp",
+        "lint": "./node_modules/.bin/gulp lint",
+        "postinstall": "./node_modules/.bin/gulp install-hooks",
         "start": "NODE_ENV=production node server.js",
         "start-dev": "node server.js"
     },
