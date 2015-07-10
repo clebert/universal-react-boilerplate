@@ -6,6 +6,8 @@
 
 ## Getting Started
 
+Changing to your newly created project directory:
+
 ```sh
 cd path_to_my_new_project/
 ```
