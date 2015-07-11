@@ -4,6 +4,16 @@
 
 [Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) JavaScript Boilerplate with React and [Baobab](https://github.com/Yomguithereal/baobab).
 
+## Features
+
+- A [React](https://facebook.github.io/react/) application that renders on both the client and the server.
+- Support for next generation JavaScript (ES6, ES7 and JSX) through [Babel](https://babeljs.io/).
+- A modern development workflow through the use of [webpack](http://webpack.github.io/).
+This includes [automatic rebuilds](https://github.com/webpack/webpack-dev-server), [hot-loading](https://github.com/gaearon/react-hot-loader) of react components and source maps.
+- Individual [ESLint](http://eslint.org/) rules for each environment.
+The linting will be performed automatically right before a ```git commit```.
+- A production-ready application server build with [Express](http://expressjs.com/).
+
 ## Getting Started
 
 Changing to your newly created project directory:
@@ -43,7 +53,7 @@ npm run start-dev
 
 ## Linting Source Code
 
-This command will be automatically executed right before a ```git commit```.
+This command will be automatically executed right before a ```git commit```:
 
 ```sh
 npm run lint
@@ -51,7 +61,7 @@ npm run lint
 
 ## Building Source Code
 
-This command will be automatically executed right before a ```git commit```.
+This command will be automatically executed right before a ```git commit```:
 
 ```sh
 npm run build
