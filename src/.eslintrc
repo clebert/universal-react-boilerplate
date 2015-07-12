@@ -1,31 +1,14 @@
 {
     "ecmaFeatures": {
-        "arrowFunctions": true,
-        "binaryLiterals": false,
-        "blockBindings": true,
-        "classes": true,
-        "defaultParams": true,
-        "destructuring": true,
-        "forOf": true,
-        "generators": true,
-        "modules": true,
-        "objectLiteralComputedProperties": true,
-        "objectLiteralDuplicateProperties": false,
-        "objectLiteralShorthandMethods": true,
-        "objectLiteralShorthandProperties": true,
-        "octalLiterals": false,
-        "regexUFlag": true,
-        "regexYFlag": true,
-        "restParams": true,
-        "spread": true,
-        "superInFunctions": true,
-        "templateStrings": true,
-        "unicodeCodePointEscapes": true,
-        "globalReturn": false,
-        "jsx": false
+        "modules": true
     },
+    "env": {
+        "es6": true
+    },
+    "parser": "babel-eslint",
     "plugins": [
-        "babel"
+        "babel",
+        "react"
     ],
     "rules": {
         /* ECMAScript 6 *******************************************************/
@@ -39,8 +22,28 @@
 
         "babel/block-scoped-var": 2,       // doesn't complain about export x from "mod"; or export * as x from "mod";
         "babel/object-shorthand": 2,       // require method and property shorthand syntax for object literals, doesn't fail when using object spread (...obj)
-        "babel/generator-star-spacing": 2, // enforce the spacing around the * in generator functions, handles async/await functions correctly
+        "babel/generator-star-spacing": 0, // enforce the spacing around the * in generator functions, handles async/await functions correctly
         "babel/new-cap": 2,                // ignores capitalized decorators (@Decorator)
-        "babel/space-in-brackets": 2       // doesn't complain about export x from "mod"; or export * as x from "mod";
+        "babel/space-in-brackets": 2,      // doesn't complain about export x from "mod"; or export * as x from "mod";
+
+        /* JSX ****************************************************************/
+
+        "react/display-name": 2,            // prevent missing displayName in a React component definition
+        "react/jsx-boolean-value": 2,       // enforce boolean attributes notation in JSX
+        "react/jsx-no-undef": 2,            // disallow undeclared variables in JSX
+        "react/jsx-quotes": [2, "double"],  // enforce quote style for JSX attributes
+        "react/jsx-sort-prop-types": 2,     // enforce propTypes declarations alphabetical sorting
+        "react/jsx-sort-props": 2,          // enforce props alphabetical sorting
+        "react/jsx-uses-react": 2,          // prevent React to be incorrectly marked as unused
+        "react/jsx-uses-vars": 2,           // prevent variables used in JSX to be incorrectly marked as unused
+        "react/no-did-mount-set-state": 2,  // prevent usage of setState in componentDidMount
+        "react/no-did-update-set-state": 2, // prevent usage of setState in componentDidUpdate
+        "react/no-multi-comp": 2,           // prevent multiple component definition per file
+        "react/no-unknown-property": 2,     // prevent usage of unknown DOM property
+        "react/prop-types": 0,              // prevent missing props validation in a React component definition
+        "react/react-in-jsx-scope": 2,      // prevent missing React when using JSX
+        "react/self-closing-comp": 2,       // prevent extra closing tags for components without children
+        "react/sort-comp": 2,               // enforce component methods order
+        "react/wrap-multilines": 2          // prevent missing parentheses around multilines JSX
     }
 }

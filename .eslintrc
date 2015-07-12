@@ -5,7 +5,6 @@
     "globals": {
         "console": false
     },
-    "parser": "babel-eslint",
     "rules": {
         /* Possible Errors ****************************************************/
 
@@ -38,7 +37,6 @@
 
         "brace-style": 2,                             // enforce one true brace style (off by default)
         "comma-style": 2,                             // enforce one true comma style (off by default)
-        "consistent-this": [2, "self"],               // enforces consistent naming when capturing the current execution context (off by default)
         "func-style": [2, "expression"],              // enforces use of function declarations or expressions (off by default)
         "indent": [2, 4, {"indentSwitchCase": true}], // this option sets a specific tab width for your code (off by default)
         "linebreak-style": 2,                         // disallow mixed 'LF' and 'CRLF' as linebreaks (off by default)
