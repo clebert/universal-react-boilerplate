@@ -8,11 +8,11 @@ function increment(counter) {
     return counter + 1;
 }
 
-export default function (counter, action) {
+export default function (counter = 0, action) {
     switch (action.type) {
         case ActionTypes.DECREMENT_COUNTER: return decrement(counter);
         case ActionTypes.INCREMENT_COUNTER: return increment(counter);
     }
 
-    return counter || 0;
+    return counter;
 }

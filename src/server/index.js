@@ -3,13 +3,13 @@ import {createServer} from 'http';
 import * as Ports from './configs/ports';
 import renderClient from './utils/render-client';
 import {resolve} from 'path';
-import store from './modules/store';
+import store from './entities/store';
 
 const devMode = process.env.NODE_ENV !== 'production';
 
 const app = express();
 
-const proxy = devMode ? require('./modules/proxy') : null;
+const proxy = devMode ? require('./entities/proxy') : null;
 
 if (devMode) {
     app.all('/scripts/*', ::proxy.web);
@@ -33,7 +33,7 @@ appServer.listen(Ports.appServer, function () {
 });
 
 if (devMode) {
-    const webpackServer = require('./modules/webpack-server');
+    const webpackServer = require('./entities/webpack-server');
 
     webpackServer.listen(Ports.webpackServer, 'localhost', function () {
         console.log(`Webpack server is running on port ${Ports.webpackServer}.`);
