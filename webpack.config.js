@@ -1,5 +1,5 @@
 'use strict';
 
-require('babel/register.js')();
+require('babel/register')();
 
-module.exports = require('./src/resources/webpack.config.js');
+module.exports = require('./src/server/configs/webpack');

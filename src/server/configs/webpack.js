@@ -1,25 +1,25 @@
 import {resolve} from 'path';
 import webpack from 'webpack';
 
-const reactPath = resolve(__dirname, '../../node_modules/react/dist/react.min.js');
+const reactPath = resolve(__dirname, '../../../node_modules/react/dist/react.min.js');
 
 export default {
     entry: [
-        resolve(__dirname, '../client/client.js')
+        resolve(__dirname, '../../client/index.js')
     ],
     module: {
         loaders: [
             {
                 exclude: /node_modules/,
                 loader: 'babel',
-                test: /\.jsx?$/
+                test: /\.js$/
             }
         ],
         noParse: [reactPath]
     },
     output: {
         filename: 'client.js',
-        path: resolve(__dirname, '../../public/scripts/')
+        path: resolve(__dirname, '../../../public/scripts/')
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({

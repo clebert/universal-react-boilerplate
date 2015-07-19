@@ -2,7 +2,7 @@
 
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://raw.githubusercontent.com/clebert/universal-react-boilerplate/master/LICENSE)
 
-[Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) JavaScript Boilerplate with React and [Baobab](https://github.com/Yomguithereal/baobab).
+[Universal](https://medium.com/@mjackson/universal-javascript-4761051b7ae9) JavaScript Boilerplate with React and [Redux](https://github.com/gaearon/redux).
 
 ## Features
 

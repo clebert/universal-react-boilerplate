@@ -1,27 +1,27 @@
-import {APP_SERVER_DEV_PORT} from './server.config.js';
 import {HotModuleReplacementPlugin, NoErrorsPlugin} from 'webpack';
+import * as Ports from './ports';
 import {resolve} from 'path';
 
 export default {
     debug: true,
     devtool: '#inline-source-map',
     entry: [
-        `webpack-dev-server/client?http://localhost:${APP_SERVER_DEV_PORT}/`,
+        `webpack-dev-server/client?http://localhost:${Ports.appServer}/`,
         'webpack/hot/only-dev-server',
-        resolve(__dirname, '../client/client.js')
+        resolve(__dirname, '../../client/index.js')
     ],
     module: {
         loaders: [
             {
                 exclude: /node_modules/,
                 loaders: ['react-hot', 'babel'],
-                test: /\.jsx?$/
+                test: /\.js$/
             }
         ]
     },
     output: {
         filename: 'client.js',
-        path: resolve(__dirname, '../../public/scripts/'),
+        path: resolve(__dirname, '../../../public/scripts/'),
         publicPath: '/scripts/'
     },
     plugins: [

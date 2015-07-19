@@ -1,9 +1,5 @@
 'use strict';
 
-require('babel/register.js')();
+require('babel/register')();
 
-require('./src/server/server.js');
-
-if (process.env.NODE_ENV !== 'production') {
-    require('./src/server/webpack-server.js');
-}
+require('./src/server');
