@@ -1,9 +1,20 @@
 import * as ActionTypes from '../action-types/counter';
+import createSocket from '../utils/create-socket';
+
+const socket = createSocket('/counter');
 
 export function decrement() {
-    return {type: ActionTypes.DECREMENT_COUNTER};
+    const action = {type: ActionTypes.DECREMENT_COUNTER};
+
+    return function (dispatch) {
+        socket.store(action, dispatch);
+    };
 }
 
 export function increment() {
-    return {type: ActionTypes.INCREMENT_COUNTER};
+    const action = {type: ActionTypes.INCREMENT_COUNTER};
+
+    return function (dispatch) {
+        socket.store(action, dispatch);
+    };
 }

@@ -8,7 +8,7 @@
 
 - A [React](https://facebook.github.io/react/) application that renders on both the client and the server.
 - Support for next generation JavaScript (ES6, ES7 and JSX) through [Babel](https://babeljs.io/).
-- A modern development workflow through the use of [webpack](http://webpack.github.io/).
+- A modern development workflow through the use of [Webpack](http://webpack.github.io/).
 This includes [automatic rebuilds](https://github.com/webpack/webpack-dev-server), [hot-loading](https://github.com/gaearon/react-hot-loader) of react components and source maps.
 - Individual [ESLint](http://eslint.org/) rules for each environment.
 The linting will be performed automatically right before a ```git commit```.
