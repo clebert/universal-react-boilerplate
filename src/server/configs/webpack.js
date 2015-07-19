@@ -22,6 +22,7 @@ export default {
         path: resolve(__dirname, '../../../public/scripts/')
     },
     plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {warnings: false}
         })

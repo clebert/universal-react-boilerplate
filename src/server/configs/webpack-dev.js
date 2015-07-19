@@ -1,6 +1,6 @@
-import {HotModuleReplacementPlugin, NoErrorsPlugin} from 'webpack';
 import * as Ports from './ports';
 import {resolve} from 'path';
+import webpack from 'webpack';
 
 export default {
     debug: true,
@@ -25,8 +25,9 @@ export default {
         publicPath: '/scripts/'
     },
     plugins: [
-        new HotModuleReplacementPlugin(),
-        new NoErrorsPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
     ],
     target: 'web'
 };
