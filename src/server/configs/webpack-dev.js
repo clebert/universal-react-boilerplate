@@ -1,4 +1,3 @@
-import * as Ports from './ports';
 import {resolve} from 'path';
 import webpack from 'webpack';
 
@@ -6,8 +5,8 @@ export default {
     debug: true,
     devtool: '#inline-source-map',
     entry: [
-        `webpack-dev-server/client?http://localhost:${Ports.appServer}/`,
-        'webpack/hot/only-dev-server',
+        'webpack/hot/dev-server',
+        'webpack-hot-middleware/client',
         resolve(__dirname, '../../client/index.js')
     ],
     module: {

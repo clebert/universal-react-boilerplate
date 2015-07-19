@@ -4,10 +4,11 @@ import {Provider} from 'react-redux';
 import React from 'react';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
+import store from '../entities/store';
 
 const createHtml = compile(readFileSync(resolve(__dirname, '../../client/index.html')).toString());
 
-export default function (store) {
+export default function () {
     return createHtml({
         app: React.renderToString(<Provider store={store}>{function () {
             return <App/>;

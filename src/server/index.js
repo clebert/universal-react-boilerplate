@@ -1,41 +1,26 @@
 import express from 'express';
 import {createServer} from 'http';
-import * as Ports from './configs/ports';
 import renderClient from './utils/render-client';
 import {resolve} from 'path';
-import store from './entities/store';
 
 const devMode = process.env.NODE_ENV !== 'production';
 
+const port = devMode ? 3000 : 8080;
+
 const app = express();
 
-const proxy = devMode ? require('./entities/proxy') : null;
-
 if (devMode) {
-    app.all('/scripts/*', ::proxy.web);
-    app.all('/socket.io/*', ::proxy.web);
+    require('./utils/initialize-webpack')(app);
 }
 
 app.use(express.static(resolve(__dirname, '../../public/')));
 
 app.get('/', function (request, response) {
-    response.type('html').send(renderClient(store));
+    response.type('html').send(renderClient());
 });
 
-const appServer = createServer(app);
+const server = createServer(app);
 
-if (devMode) {
-    appServer.on('upgrade', ::proxy.ws);
-}
-
-appServer.listen(Ports.appServer, function () {
-    console.log(`Application server is running on port ${Ports.appServer}.`);
+server.listen(port, function () {
+    console.log(`Server is running on port ${port}.`);
 });
-
-if (devMode) {
-    const webpackServer = require('./entities/webpack-server');
-
-    webpackServer.listen(Ports.webpackServer, 'localhost', function () {
-        console.log(`Webpack server is running on port ${Ports.webpackServer}.`);
-    });
-}

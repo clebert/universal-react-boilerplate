@@ -19,7 +19,6 @@
         "gulp": "latest",
         "gulp-debug": "latest",
         "gulp-eslint": "latest",
-        "http-proxy": "latest",
         "node-libs-browser": "latest",
         "react": "latest",
         "react-hot-loader": "latest",
@@ -27,6 +26,7 @@
         "redux": "^1.0.0-rc",
         "string-template": "latest",
         "webpack": "latest",
-        "webpack-dev-server": "latest"
+        "webpack-dev-middleware": "latest",
+        "webpack-hot-middleware": "latest"
     }
 }
