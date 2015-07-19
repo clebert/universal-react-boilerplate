@@ -6,10 +6,6 @@ import * as Reducers from '../app/reducers';
 
 const store = createStore(combineReducers(Reducers), window.initialState);
 
-React.render((
-    <Provider store={store}>
-        {function () {
-            return <App/>;
-        }}
-    </Provider>
-), document.querySelector('main'));
+React.render(<Provider store={store}>{function () {
+    return <App/>;
+}}</Provider>, document.querySelector('main'));

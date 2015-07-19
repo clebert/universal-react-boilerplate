@@ -9,9 +9,7 @@ export default class App extends Component {
     render() {
         const {counter, dispatch} = this.props;
 
-        return (
-            <Counter counter={counter} {...bindActionCreators(ActionCreators, dispatch)}/>
-        );
+        return <Counter counter={counter} {...bindActionCreators(ActionCreators, dispatch)}/>;
     }
 }
 

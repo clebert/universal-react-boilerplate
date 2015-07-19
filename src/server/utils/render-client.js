@@ -9,13 +9,9 @@ const createHtml = compile(readFileSync(resolve(__dirname, '../../client/index.h
 
 export default function (store) {
     return createHtml({
-        app: React.renderToString((
-            <Provider store={store}>
-                {function () {
-                    return <App/>;
-                }}
-            </Provider>
-        )),
+        app: React.renderToString(<Provider store={store}>{function () {
+            return <App/>;
+        }}</Provider>),
         initialState: JSON.stringify(store.getState()),
         title: 'Universal React Boilerplate'
     });
