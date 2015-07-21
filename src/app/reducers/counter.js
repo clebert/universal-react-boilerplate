@@ -10,8 +10,8 @@ function increment(counter) {
 
 export default function (counter = 0, action) {
     switch (action.type) {
-        case ActionTypes.DECREMENT_COUNTER: return decrement(counter);
-        case ActionTypes.INCREMENT_COUNTER: return increment(counter);
+        case ActionTypes.decrement: return decrement(counter);
+        case ActionTypes.increment: return increment(counter);
     }
 
     return counter;

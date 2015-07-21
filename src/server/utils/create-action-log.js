@@ -25,13 +25,13 @@ export default function (io) {
 
                     store.dispatch(action);
 
+                    callback(action);
+
                     reducerIo.emit('token', token = createUuid());
-
-                    callback({action});
                 } else {
-                    reducerIo.emit('token', token);
+                    callback({});
 
-                    callback({error: true}); // TODO: use error type...
+                    reducerIo.emit('token', token);
                 }
             });
         });

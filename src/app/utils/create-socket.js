@@ -14,13 +14,7 @@ export default function (namespace) {
     });
 
     function store(action, dispatch) {
-        socket.emit('store', {action, token}, function (response) {
-            if (response.error) {
-                dispatch({}); // TODO: improve error handling...
-            } else {
-                dispatch(response.action);
-            }
-        });
+        socket.emit('store', {action, token}, dispatch);
     }
 
     return {store};
