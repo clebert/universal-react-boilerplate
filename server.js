@@ -1,5 +1,9 @@
-'use strict';
+'use strict'
 
-require('babel/register')();
+require('babel/register')
 
-require('./src/server');
+if (process.env.NODE_ENV === 'development') {
+  require('./src/server/server.dev')
+} else {
+  require('./src/server/server')
+}
