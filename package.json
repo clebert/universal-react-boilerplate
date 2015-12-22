@@ -1,16 +1,6 @@
 {
-  "name": "universal-react-boilerplate",
-  "description": "TODO",
-  "version": "0.0.0",
-  "engines": {
-    "node": ">=5.0.0"
-  },
-  "keywords": [],
-  "license": "MIT",
-  "main": "lib/index.js",
-  "repository": "https://github.com/clebert/universal-react-boilerplate",
-  "dependencies": {},
-  "devDependencies": {
+  "private": true,
+  "dependencies": {
     "babel-core": "latest",
     "babel-eslint": "latest",
     "babel-loader": "latest",
@@ -20,13 +10,23 @@
     "babel-plugin-transform-es2015-parameters": "latest",
     "babel-plugin-transform-function-bind": "latest",
     "babel-plugin-transform-object-rest-spread": "latest",
+    "babel-plugin-transform-react-constant-elements": "latest",
+    "babel-plugin-transform-react-inline-elements": "latest",
+    "babel-plugin-transform-react-jsx": "latest",
+    "babel-plugin-transform-remove-debugger": "latest",
     "babel-plugin-transform-strict-mode": "latest",
+    "css-loader": "latest",
     "eslint": "latest",
     "eslint-config-standard": "latest",
     "eslint-loader": "latest",
     "eslint-plugin-standard": "latest",
+    "extract-text-webpack-plugin": "latest",
+    "file-loader": "latest",
     "publish-please": "latest",
+    "source-map-support": "latest",
+    "style-loader": "latest",
     "tape": "latest",
+    "url-loader": "latest",
     "webpack": "latest"
   }
 }

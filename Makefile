@@ -1,30 +1,16 @@
 MAKEFLAGS = -j1
 
-export DIRNAME := $(strip $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST)))))
-export PATH := $(DIRNAME)/node_modules/.bin:$(PATH)
-export SHELL := /bin/bash
+export PATH := ./node_modules/.bin:$(PATH)
 
-.PHONY: build clean major minor patch publish
+.PHONY: build build-dev clean
 
 build: clean
-	npm install && webpack --bail --progress $(DIRNAME)/src/index.js $(DIRNAME)/lib/index.js
+	npm install && NODE_ENV=production webpack --bail --progress
+
+build-dev: clean
+	npm install && NODE_ENV=development webpack --bail --progress
 
 clean:
-	rm -rf $(DIRNAME)/lib/
-	rm -rf $(DIRNAME)/npm-debug.log
-
-major:
-	npm version major && make publish
-
-minor:
-	npm version minor && make publish
-
-patch:
-	npm version patch && make publish
-
-publish: test
-	publish-please && git push && git push --tags
-
-test: build
-	webpack --bail --progress $(DIRNAME)/test/index.js $(DIRNAME)/lib/index.test.js && \
-	node $(DIRNAME)/lib/index.test.js
+	rm -rf ./lib/
+	rm -rf ./npm-debug.log
+	rm -rf ./public/
