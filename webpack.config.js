@@ -62,6 +62,9 @@ module.exports = {
     loaders: [babelLoader, cssLoader, pngLoader],
     preLoaders: [eslintLoader]
   },
+  node: {
+    __dirname: true
+  },
   output: {
     filename: 'server.js',
     libraryTarget: 'commonjs2',
