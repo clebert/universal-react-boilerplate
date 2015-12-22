@@ -1,0 +1,32 @@
+{
+  "name": "universal-react-boilerplate",
+  "description": "TODO",
+  "version": "0.0.0",
+  "engines": {
+    "node": ">=5.0.0"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "repository": "https://github.com/clebert/universal-react-boilerplate",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "latest",
+    "babel-eslint": "latest",
+    "babel-loader": "latest",
+    "babel-plugin-transform-class-properties": "latest",
+    "babel-plugin-transform-es2015-destructuring": "latest",
+    "babel-plugin-transform-es2015-modules-commonjs": "latest",
+    "babel-plugin-transform-es2015-parameters": "latest",
+    "babel-plugin-transform-function-bind": "latest",
+    "babel-plugin-transform-object-rest-spread": "latest",
+    "babel-plugin-transform-strict-mode": "latest",
+    "eslint": "latest",
+    "eslint-config-standard": "latest",
+    "eslint-loader": "latest",
+    "eslint-plugin-standard": "latest",
+    "publish-please": "latest",
+    "tape": "latest",
+    "webpack": "latest"
+  }
+}

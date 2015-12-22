@@ -1,0 +1,12 @@
+before_script:
+  - npm prune
+cache:
+  directories:
+    - node_modules
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '5'
+script: make build
+sudo: false
