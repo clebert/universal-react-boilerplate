@@ -22,6 +22,7 @@
     "eslint-plugin-standard": "latest",
     "extract-text-webpack-plugin": "latest",
     "file-loader": "latest",
+    "koa": "latest",
     "publish-please": "latest",
     "source-map-support": "latest",
     "style-loader": "latest",

@@ -1,18 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
 
-const devMode = process.env.NODE_ENV === 'development'
-
-console.log(`Compiling server in ${devMode ? 'development' : 'production'} mode...`)
-
-const entry = [
-  './src/server/index.js'
-]
-
-if (devMode) {
-  entry.unshift('source-map-support/register')
-}
-
 const babelPlugins = [
   'transform-class-properties',
   'transform-es2015-destructuring',
@@ -24,55 +12,57 @@ const babelPlugins = [
   'transform-strict-mode'
 ]
 
-if (!devMode) {
+if (process.env.NODE_ENV === 'production') {
   babelPlugins.push('transform-react-constant-elements')
   babelPlugins.push('transform-react-inline-elements')
   babelPlugins.push('transform-remove-debugger')
 }
 
-const babelLoader = {
-  loader: 'babel',
-  query: {plugins: babelPlugins},
-  test: /\.js$/
-}
+const cssLoaderQuery = 'modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]'
 
-const cssLoaderString = 'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]'
-
-const cssLoader = {
-  loader: ExtractTextPlugin.extract('style', cssLoaderString),
-  test: /\.css$/
-}
-
-const eslintLoader = {
-  loader: 'eslint',
-  test: /\.js$/
-}
-
-const pngLoader = {
-  loader: 'url?limit=1000&minetype=image/png',
-  test: /\.png$/
-}
+const testMode = process.env.NODE_ENV === 'test'
 
 module.exports = {
-  debug: devMode,
-  devtool: devMode ? '#inline-source-map' : null,
-  entry: entry,
+  bail: true,
+  entry: [
+    'source-map-support/register',
+    testMode ? './test/index.js' : './src/index.js'
+  ],
+  debug: true,
+  devtool: '#inline-source-map',
   externals: /^[a-zA-Z0-9]/,
   module: {
-    loaders: [babelLoader, cssLoader, pngLoader],
-    preLoaders: [eslintLoader]
+    loaders: [
+      {
+        loader: 'babel',
+        query: {plugins: babelPlugins},
+        test: /\.js$/
+      },
+      {
+        loader: ExtractTextPlugin.extract('style', 'css?' + cssLoaderQuery),
+        test: /\.css$/
+      },
+      {
+        loader: 'url?limit=1000&minetype=image/png',
+        test: /\.png$/
+      }
+    ],
+    preLoaders: [{
+      loader: 'eslint',
+      test: /\.js$/
+    }]
   },
   node: {
     __dirname: true
   },
   output: {
-    filename: 'server.js',
+    filename: testMode ? 'test.js' : 'index.js',
     libraryTarget: 'commonjs2',
     path: './lib/',
-    pathinfo: devMode
+    pathinfo: true
   },
   plugins: [
-    new ExtractTextPlugin('useless.css'),
+    new ExtractTextPlugin('index.css'),
     new webpack.NoErrorsPlugin()
   ],
   target: 'node'

@@ -1,0 +1,15 @@
+before_script:
+  - npm prune
+branches:
+  only:
+    - master
+cache:
+  directories:
+    - node_modules
+language: node_js
+notifications:
+  email: false
+node_js:
+  - '5'
+script: make test
+sudo: false

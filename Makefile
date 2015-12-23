@@ -1,16 +1,21 @@
 MAKEFLAGS = -j1
 
-export PATH := ./node_modules/.bin:$(PATH)
+PATH := ./node_modules/.bin:$(PATH)
+SHELL := /bin/bash
 
-.PHONY: build build-dev clean
+.PHONY: build clean dev start test
 
-build: clean
-	npm install && NODE_ENV=production webpack --bail --progress
-
-build-dev: clean
-	npm install && NODE_ENV=development webpack --bail --progress
+build:
+	make clean && webpack --progress && rm -f ./lib/index.css
 
 clean:
 	rm -rf ./lib/
-	rm -rf ./npm-debug.log
-	rm -rf ./public/
+
+dev:
+	export NODE_ENV=development && make build && node ./lib/index.js
+
+start:
+	export NODE_ENV=production && make build && node ./lib/index.js
+
+test:
+	export NODE_ENV=test && make build && node ./lib/test.js
