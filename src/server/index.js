@@ -4,15 +4,17 @@ import createReactMiddleware from './middlewares/react'
 import createReduxMiddleware from './middlewares/redux'
 import {createServer} from 'http'
 import createSessionMiddleware from './middlewares/session'
+import createStaticMiddleware from './middlewares/static'
 import Koa from 'koa'
 
 const debug = createDebug('clebert:server')
 
 const koa = new Koa()
 
-koa.keys = ['my_secret_key']
+koa.keys = ['2e865b08-76d4-41d8-9e6a-2a472297b7ae']
 
 koa.use(createErrorMiddleware())
+koa.use(createStaticMiddleware())
 koa.use(createSessionMiddleware())
 koa.use(createReduxMiddleware())
 koa.use(createReactMiddleware())

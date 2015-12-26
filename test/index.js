@@ -1,5 +1,7 @@
 import test from 'tape'
 
-test('TODO', ({plan}) => {
-  plan(0)
+test('TODO', ({ok, plan}) => {
+  plan(1)
+
+  ok(true)
 })

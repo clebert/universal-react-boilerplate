@@ -5,17 +5,27 @@ import Layout from '../components/layout'
 import {promisify} from 'bluebird'
 import {Provider} from 'react-redux'
 import React from 'react'
+import {readFileSync} from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
 import Root from '../../shared/components/root'
 
-const prodMode = process.env.NODE_ENV === 'production'
+const devMode = process.env.NODE_ENV === 'development'
 
 const debug = createDebug('clebert:react')
 const matchAsync = promisify(match, {multiArgs: true})
 
+const readAssets = () => {
+  try {
+    return JSON.parse(readFileSync('./lib/assets.json', 'utf8')).main
+  } catch (e) {
+    return {css: 'client.css', js: 'client.js'}
+  }
+}
+
 export default () => {
-  const cssURLs = [] // TODO: use css assets...
-  const jsURLs = [] // TODO: use js assets...
+  const Assets = readAssets()
+  const cssURLs = Assets['css'] ? [Assets['css']] : []
+  const jsURLs = Assets['js'] ? [Assets['js']] : []
   const title = 'Universal React Boilerplate'
 
   return async (ctx, next) => {
@@ -38,7 +48,7 @@ export default () => {
 
       ctx.body = '<!DOCTYPE html>' + renderToStaticMarkup((
         <Layout cssURLs={cssURLs} jsURLs={jsURLs} state={store.getState()} title={title}>
-          {(() => prodMode ? (
+          {(() => !devMode ? (
             <Provider store={store}>
               <RoutingContext {...renderProps}/>
             </Provider>
