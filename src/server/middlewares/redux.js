@@ -1,6 +1,7 @@
 import createDebug from 'debug'
 import {createStore} from 'redux'
 import format from '../utils/format'
+import reducer from '../../shared/reducer'
 
 const debug = createDebug('clebert:redux')
 
@@ -10,7 +11,7 @@ export default () => {
 
     debug(format(ctx, 'load state from session and create store'))
 
-    ctx.store = createStore((state = {}) => state, session.state || {}) // TODO: use real reducer...
+    ctx.store = createStore(reducer, session.state || {})
 
     await next()
 

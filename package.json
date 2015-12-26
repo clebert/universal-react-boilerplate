@@ -49,11 +49,14 @@
     "react-redux": "latest",
     "react-router": "latest",
     "redux": "latest",
+    "redux-simple-router": "latest",
     "source-map-support": "latest",
     "style-loader": "latest",
     "stylelint": "latest",
     "tape": "latest",
     "url-loader": "latest",
-    "webpack": "latest"
+    "webpack": "latest",
+    "webpack-koa-dev-middleware": "latest",
+    "webpack-koa-hot-middleware": "latest"
   }
 }

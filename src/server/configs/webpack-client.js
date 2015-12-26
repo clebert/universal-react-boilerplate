@@ -80,7 +80,7 @@ module.exports = {
   output: {
     filename: `client${devMode ? '' : '.[hash]'}.js`,
     libraryTarget: 'var',
-    path: './public/',
+    path: path.resolve(__dirname, './public/'),
     pathinfo: devMode
   },
   plugins: [

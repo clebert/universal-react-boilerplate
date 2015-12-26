@@ -1,4 +1,5 @@
 import createDebug from 'debug'
+import createRoute from '../../shared/utils/create-route'
 import {createRoutes, match, RoutingContext} from 'react-router'
 import format from '../utils/format'
 import Layout from '../components/layout'
@@ -7,7 +8,6 @@ import {Provider} from 'react-redux'
 import React from 'react'
 import {readFileSync} from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
-import Root from '../../shared/components/root'
 
 const devMode = process.env.NODE_ENV === 'development'
 
@@ -24,14 +24,12 @@ const readAssets = () => {
 
 export default () => {
   const Assets = readAssets()
-  const cssURLs = Assets['css'] ? [Assets['css']] : []
-  const jsURLs = Assets['js'] ? [Assets['js']] : []
   const title = 'Universal React Boilerplate'
 
   return async (ctx, next) => {
     const [redirectLocation, renderProps] = await matchAsync({
       location: ctx.url,
-      routes: createRoutes(Root)
+      routes: createRoutes(createRoute())
     })
 
     if (redirectLocation) {
@@ -47,12 +45,12 @@ export default () => {
       ctx.status = 200
 
       ctx.body = '<!DOCTYPE html>' + renderToStaticMarkup((
-        <Layout cssURLs={cssURLs} jsURLs={jsURLs} state={store.getState()} title={title}>
-          {(() => !devMode ? (
+        <Layout cssURL={Assets['css']} jsURL={Assets['js']} state={store.getState()} title={title}>
+          {!devMode ? (
             <Provider store={store}>
               <RoutingContext {...renderProps}/>
             </Provider>
-          ) : null)()}
+          ) : null}
         </Layout>
       ))
 
