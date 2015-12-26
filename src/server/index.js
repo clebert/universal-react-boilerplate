@@ -20,6 +20,7 @@ const koa = new Koa()
 koa.keys = ['2e865b08-76d4-41d8-9e6a-2a472297b7ae']
 
 koa.use(createErrorMiddleware())
+koa.use(createSessionMiddleware())
 
 if (devMode) {
   const compiler = createCompiler(webpackConfig)
@@ -29,7 +30,6 @@ if (devMode) {
 }
 
 koa.use(createStaticMiddleware())
-koa.use(createSessionMiddleware())
 koa.use(createReduxMiddleware())
 koa.use(createReactMiddleware())
 

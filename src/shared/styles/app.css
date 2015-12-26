@@ -1,0 +1,14 @@
+html {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+*,
+::before,
+::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}

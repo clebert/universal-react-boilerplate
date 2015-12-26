@@ -13,17 +13,10 @@ const devMode = process.env.NODE_ENV === 'development'
 
 const debug = createDebug('clebert:react')
 const matchAsync = promisify(match, {multiArgs: true})
-
-const readAssets = () => {
-  try {
-    return JSON.parse(readFileSync('./lib/assets.json', 'utf8')).main
-  } catch (e) {
-    return {css: 'client.css', js: 'client.js'}
-  }
-}
+const readAssets = () => JSON.parse(readFileSync('./lib/assets.json', 'utf8')).main
 
 export default () => {
-  const Assets = readAssets()
+  const Assets = devMode ? {js: 'client.js'} : readAssets()
   const title = 'Universal React Boilerplate'
 
   return async (ctx, next) => {

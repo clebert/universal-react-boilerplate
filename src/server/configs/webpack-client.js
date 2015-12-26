@@ -9,7 +9,7 @@ const webpack = require('webpack')
 
 const devMode = process.env.NODE_ENV === 'development'
 
-const cssLoader = 'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]'
+const cssLoader = 'css?modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]!postcss'
 
 module.exports = {
   bail: true,
