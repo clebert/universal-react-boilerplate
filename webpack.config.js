@@ -1,8 +1,13 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const webpack = require('webpack')
 
+const prodMode = process.env.NODE_ENV === 'production'
+const testMode = process.env.NODE_ENV === 'test'
+
 const babelPlugins = [
+  'transform-async-to-generator',
   'transform-class-properties',
+  'transform-es2015-block-scoping',
   'transform-es2015-destructuring',
   'transform-es2015-modules-commonjs',
   'transform-es2015-parameters',
@@ -12,15 +17,13 @@ const babelPlugins = [
   'transform-strict-mode'
 ]
 
-if (process.env.NODE_ENV === 'production') {
+if (prodMode) {
   babelPlugins.push('transform-react-constant-elements')
   babelPlugins.push('transform-react-inline-elements')
   babelPlugins.push('transform-remove-debugger')
 }
 
 const cssLoaderQuery = 'modules&importLoaders=1&localIdentName=[name]_[local]_[hash:base64:5]'
-
-const testMode = process.env.NODE_ENV === 'test'
 
 module.exports = {
   bail: true,

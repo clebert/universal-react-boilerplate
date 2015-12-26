@@ -12,10 +12,10 @@ clean:
 	rm -rf ./lib/
 
 dev:
-	export NODE_ENV=development && make build && node ./lib/index.js
+	export NODE_ENV=development && export DEBUG=clebert* && make build && node ./lib/index.js
 
 start:
-	export NODE_ENV=production && make build && node ./lib/index.js
+	export NODE_ENV=production && export DEBUG=clebert* && make build && node ./lib/index.js
 
 test:
 	export NODE_ENV=test && make build && node ./lib/test.js
