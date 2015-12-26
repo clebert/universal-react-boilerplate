@@ -45,7 +45,7 @@ export default () => {
       ctx.status = 200
 
       ctx.body = '<!DOCTYPE html>' + renderToStaticMarkup((
-        <Layout cssURL={Assets['css']} jsURL={Assets['js']} state={store.getState()} title={title}>
+        <Layout cssFilename={Assets['css']} jsFilename={Assets['js']} state={store.getState()} title={title}>
           {!devMode ? (
             <Provider store={store}>
               <RoutingContext {...renderProps}/>

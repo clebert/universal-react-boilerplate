@@ -8,7 +8,7 @@ const renderToJSON = object => {
   })
 }
 
-const Layout = ({children, cssURL, jsURL, state, title}) => (
+const Layout = ({children, cssFilename, jsFilename, state, title}) => (
   <html lang='en'>
     <head>
       <title>{title}</title>
@@ -20,7 +20,7 @@ const Layout = ({children, cssURL, jsURL, state, title}) => (
         'user-scalable=no'
       ].join(', ')}/>
 
-      {cssURL ? <link rel='stylesheet' href={cssURL}/> : null}
+      {cssFilename ? <link rel='stylesheet' href={`/${cssFilename}`}/> : null}
     </head>
     <body>
       <main dangerouslySetInnerHTML={{
@@ -31,7 +31,7 @@ const Layout = ({children, cssURL, jsURL, state, title}) => (
         __html: 'window.__state = ' + renderToJSON(state)
       }}/>
 
-      {jsURL ? <script src={jsURL}/> : null}
+      {jsFilename ? <script src={`/${jsFilename}`}/> : null}
     </body>
   </html>
 )
@@ -40,8 +40,8 @@ export default Layout
 
 Layout.propTypes = {
   children: PropTypes.element,
-  cssURL: PropTypes.string,
-  jsURL: PropTypes.string,
+  cssFilename: PropTypes.string,
+  jsFilename: PropTypes.string,
   state: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired
 }
