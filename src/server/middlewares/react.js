@@ -1,5 +1,4 @@
 import createDebug from 'debug'
-import createRoute from '../../shared/utils/create-route'
 import {createRoutes, match, RoutingContext} from 'react-router'
 import format from '../utils/format'
 import Layout from '../components/layout'
@@ -8,6 +7,7 @@ import {Provider} from 'react-redux'
 import React from 'react'
 import {readFileSync} from 'fs'
 import {renderToStaticMarkup} from 'react-dom/server'
+import route from '../../shared/route'
 
 const devMode = process.env.NODE_ENV === 'development'
 
@@ -29,7 +29,7 @@ export default () => {
   return async (ctx, next) => {
     const [redirectLocation, renderProps] = await matchAsync({
       location: ctx.url,
-      routes: createRoutes(createRoute())
+      routes: createRoutes(route)
     })
 
     if (redirectLocation) {

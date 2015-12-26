@@ -47,12 +47,12 @@ module.exports = {
             'transform-react-jsx',
             'transform-strict-mode',
             'transform-undefined-to-void'
-          ].concat(!devMode ? [
+          ].concat(devMode ? [] : [
             'transform-react-constant-elements',
             'transform-react-inline-elements',
             'transform-remove-console',
             'transform-remove-debugger'
-          ] : []),
+          ]),
           presets: ['es2015']
         },
         test: /\.js$/
@@ -100,8 +100,8 @@ module.exports = {
     stylelint(),
     lost(),
     autoprefixer('last 2 versions')
-  ].concat(!devMode ? [
+  ].concat(devMode ? [] : [
     cssnano()
-  ] : []),
+  ]),
   target: 'web'
 }

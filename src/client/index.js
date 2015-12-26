@@ -1,10 +1,10 @@
 import {createHistory} from 'history'
-import createRoute from '../shared/utils/create-route'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import React from 'react'
 import reducer from '../shared/reducer'
 import {render} from 'react-dom'
+import route from '../shared/route'
 import {Router} from 'react-router'
 import {syncReduxAndRouter} from 'redux-simple-router'
 
@@ -20,6 +20,6 @@ syncReduxAndRouter(history, store)
 
 render((
   <Provider store={store}>
-    <Router history={history}>{createRoute()}</Router>
+    <Router history={history}>{route}</Router>
   </Provider>
 ), document.querySelector('main'))

@@ -31,11 +31,11 @@ module.exports = {
             'transform-object-rest-spread',
             'transform-react-jsx',
             'transform-strict-mode'
-          ].concat(!devMode ? [
+          ].concat(devMode ? [] : [
             'transform-react-constant-elements',
             'transform-react-inline-elements',
             'transform-remove-debugger'
-          ] : [])
+          ])
         },
         test: /\.js$/
       },
