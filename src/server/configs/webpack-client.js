@@ -16,6 +16,7 @@ module.exports = {
   entry: (devMode ? [
     'webpack-hot-middleware/client?reload=true'
   ] : []).concat([
+    'babel-polyfill',
     './src/client/index.js'
   ]),
   debug: devMode,

@@ -1,13 +1,16 @@
+import createApiMiddleware from './middlewares/api'
+import createAppMiddleware from './middlewares/app'
 import createCompiler from 'webpack'
 import createDebug from 'debug'
 import createDevMiddleware from './middlewares/dev'
 import createErrorMiddleware from './middlewares/error'
 import createHotMiddleware from './middlewares/hot'
-import createReactMiddleware from './middlewares/react'
-import createReduxMiddleware from './middlewares/redux'
+import createIdMiddleware from './middlewares/id'
 import {createServer} from 'http'
 import createSessionMiddleware from './middlewares/session'
 import createStaticMiddleware from './middlewares/static'
+import createUrlMiddleware from './middlewares/url'
+import {v4 as createUuid} from 'node-uuid'
 import Koa from 'koa'
 import webpackConfig from './configs/webpack-client'
 
@@ -17,10 +20,12 @@ const debug = createDebug('clebert:server')
 
 const koa = new Koa()
 
-koa.keys = ['2e865b08-76d4-41d8-9e6a-2a472297b7ae']
+koa.keys = [createUuid()]
 
 koa.use(createErrorMiddleware())
+koa.use(createIdMiddleware())
 koa.use(createSessionMiddleware())
+koa.use(createUrlMiddleware())
 
 if (devMode) {
   const compiler = createCompiler(webpackConfig)
@@ -30,8 +35,8 @@ if (devMode) {
 }
 
 koa.use(createStaticMiddleware())
-koa.use(createReduxMiddleware())
-koa.use(createReactMiddleware())
+koa.use(createAppMiddleware())
+koa.use(createApiMiddleware())
 
 const server = createServer(koa.callback())
 

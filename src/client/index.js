@@ -6,15 +6,22 @@ import reducer from '../shared/reducer'
 import {render} from 'react-dom'
 import route from '../shared/route'
 import {Router} from 'react-router'
-import {syncReduxAndRouter} from 'redux-simple-router'
-
-const history = createHistory()
+import sendJsonAsync from './utils/send-json-async'
+import {pushPath, syncReduxAndRouter} from 'redux-simple-router'
 
 const store = createStore(reducer, window.__state)
 
-store.subscribe(() => {
-  // TODO
+store.subscribe(async () => {
+  try {
+    await sendJsonAsync(store.getState(), '/api/sync-state')
+  } catch (e) {
+    if (window.location.pathname !== '/oops') {
+      store.dispatch(pushPath('/oops'))
+    }
+  }
 })
+
+const history = createHistory()
 
 syncReduxAndRouter(history, store)
 

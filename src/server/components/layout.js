@@ -1,10 +1,10 @@
-import escapeHTML from 'escape-html'
+import escapeHtml from 'escape-html'
 import React, {PropTypes} from 'react'
 import {renderToString} from 'react-dom/server'
 
 const renderToJSON = object => {
   return JSON.stringify(object, (key, value) => {
-    return typeof value === 'string' ? escapeHTML(value) : value
+    return typeof value === 'string' ? escapeHtml(value) : value
   })
 }
 

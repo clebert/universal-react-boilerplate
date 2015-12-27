@@ -1,6 +1,6 @@
 import createDebug from 'debug'
 import createRouter from 'koa-router'
-import format from '../utils/format'
+import formatMessage from '../utils/format-message'
 import {readdirSync} from 'fs'
 import send from 'koa-send'
 
@@ -11,7 +11,9 @@ export default () => {
 
   for (const filename of readdirSync('./public')) {
     router.get(`/${filename}`, async ctx => {
-      debug(format(ctx, 'respond with status code 200'))
+      ctx.status = 200
+
+      debug(formatMessage(`respond with status code ${ctx.status}`, ctx))
 
       await send(ctx, `./public/${filename}`)
     })

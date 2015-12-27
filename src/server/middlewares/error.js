@@ -1,7 +1,36 @@
 import createDebug from 'debug'
-import format from '../utils/format'
+import formatMessage from '../utils/format-message'
+import {parse as parseUrl} from 'url'
 
 const debug = createDebug('clebert:error')
+
+const isAjaxRequest = ctx => ctx.get('X-Requested-With') === 'XMLHttpRequest'
+
+const redirectToErrorPage = ctx => {
+  const url = '/oops'
+
+  ctx.status = 302
+
+  debug(formatMessage(`${ctx.status} redirect to ${url}`, ctx))
+
+  ctx.redirect(url)
+
+  ctx.body = ctx.message
+}
+
+const handleBadRequest = ctx => {
+  const ajax = isAjaxRequest(ctx)
+  const {message, originalUrl, status} = ctx
+  const {pathname} = parseUrl(originalUrl)
+
+  if (ctx.accepts('html') && !ajax && !/^\/oops\/?$/.test(pathname)) {
+    redirectToErrorPage(ctx)
+  } else if (ctx.accepts('json') && ajax) {
+    ctx.body = {error: message}
+  } else {
+    ctx.body = `${status} ${message}`
+  }
+}
 
 export default () => {
   return async (ctx, next) => {
@@ -11,17 +40,14 @@ export default () => {
       const {status} = ctx
 
       if (status >= 400) {
-        const url = '/oops'
+        debug(formatMessage(`handle status code ${status}`, ctx))
 
-        debug(format(ctx, `redirect to ${url} because of status code ${status}`))
-
-        ctx.redirect(url)
+        handleBadRequest(ctx)
       }
     } catch (error) {
-      debug(format(ctx, error ? error.stack : 'unknown error'))
+      debug(formatMessage(error ? error.stack : 'unknown error', ctx))
 
-      ctx.status = 500
-      ctx.body = ctx.message
+      handleBadRequest(ctx)
     }
   }
 }
