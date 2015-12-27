@@ -4,8 +4,6 @@ import {parse as parseUrl} from 'url'
 
 const debug = createDebug('clebert:error')
 
-const isAjaxRequest = ctx => ctx.get('X-Requested-With') === 'XMLHttpRequest'
-
 const redirectToErrorPage = ctx => {
   const url = '/oops'
 
@@ -14,21 +12,16 @@ const redirectToErrorPage = ctx => {
   debug(formatMessage(`${ctx.status} redirect to ${url}`, ctx))
 
   ctx.redirect(url)
-
-  ctx.body = ctx.message
 }
 
 const handleBadRequest = ctx => {
-  const ajax = isAjaxRequest(ctx)
-  const {message, originalUrl, status} = ctx
+  const {message, originalUrl} = ctx
   const {pathname} = parseUrl(originalUrl)
 
-  if (ctx.accepts('html') && !ajax && !/^\/oops\/?$/.test(pathname)) {
-    redirectToErrorPage(ctx)
-  } else if (ctx.accepts('json') && ajax) {
+  if (/^\/assets\//.test(pathname) || /^\/api\//.test(pathname) || /^\/oops\/?$/.test(pathname)) {
     ctx.body = {error: message}
   } else {
-    ctx.body = `${status} ${message}`
+    redirectToErrorPage(ctx)
   }
 }
 

@@ -15,7 +15,7 @@ store.subscribe(async () => {
   try {
     await sendJsonAsync(store.getState(), '/api/sync-state')
   } catch (e) {
-    if (window.location.pathname !== '/oops') {
+    if (!/^\/oops\/?$/.test(window.location.pathname)) {
       store.dispatch(pushPath('/oops'))
     }
   }

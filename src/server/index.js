@@ -1,18 +1,16 @@
 import createApiMiddleware from './middlewares/api'
 import createAppMiddleware from './middlewares/app'
-import createCompiler from 'webpack'
+import createAssetsMiddleware from './middlewares/assets'
 import createDebug from 'debug'
 import createDevMiddleware from './middlewares/dev'
 import createErrorMiddleware from './middlewares/error'
 import createHotMiddleware from './middlewares/hot'
 import createIdMiddleware from './middlewares/id'
+import createPathnameMiddleware from './middlewares/pathname'
 import {createServer} from 'http'
 import createSessionMiddleware from './middlewares/session'
-import createStaticMiddleware from './middlewares/static'
-import createUrlMiddleware from './middlewares/url'
 import {v4 as createUuid} from 'node-uuid'
 import Koa from 'koa'
-import webpackConfig from './configs/webpack-client'
 
 const devMode = process.env.NODE_ENV === 'development'
 
@@ -25,16 +23,14 @@ koa.keys = [createUuid()]
 koa.use(createErrorMiddleware())
 koa.use(createIdMiddleware())
 koa.use(createSessionMiddleware())
-koa.use(createUrlMiddleware())
+koa.use(createPathnameMiddleware())
 
 if (devMode) {
-  const compiler = createCompiler(webpackConfig)
-
-  koa.use(createDevMiddleware(compiler))
-  koa.use(createHotMiddleware(compiler))
+  koa.use(createDevMiddleware())
+  koa.use(createHotMiddleware())
 }
 
-koa.use(createStaticMiddleware())
+koa.use(createAssetsMiddleware())
 koa.use(createAppMiddleware())
 koa.use(createApiMiddleware())
 

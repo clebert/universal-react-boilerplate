@@ -14,11 +14,13 @@ import route from '../../shared/route'
 const devMode = process.env.NODE_ENV === 'development'
 
 const debug = createDebug('clebert:app')
+
 const matchAsync = promisify(match, {multiArgs: true})
+
 const readAssets = () => JSON.parse(readFileSync('./lib/assets.json', 'utf8')).main
 
 export default () => {
-  const Assets = devMode ? {js: 'client.js'} : readAssets()
+  const Assets = devMode ? {js: '/assets/client.js'} : readAssets()
   const title = 'Universal React Boilerplate'
 
   return async (ctx, next) => {

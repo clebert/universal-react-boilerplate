@@ -81,8 +81,9 @@ module.exports = {
   output: {
     filename: `client${devMode ? '' : '.[hash]'}.js`,
     libraryTarget: 'var',
-    path: path.resolve('./public/'),
-    pathinfo: devMode
+    path: path.resolve('./assets/'),
+    pathinfo: devMode,
+    publicPath: '/assets/'
   },
   plugins: [
     new webpack.NoErrorsPlugin()

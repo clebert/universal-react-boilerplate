@@ -20,7 +20,7 @@ const Layout = ({children, cssFilename, jsFilename, state, title}) => (
         'user-scalable=no'
       ].join(', ')}/>
 
-      {cssFilename ? <link rel='stylesheet' href={`/${cssFilename}`}/> : null}
+      {cssFilename ? <link rel='stylesheet' href={`${cssFilename}`}/> : null}
     </head>
     <body>
       <main dangerouslySetInnerHTML={{
@@ -31,7 +31,7 @@ const Layout = ({children, cssFilename, jsFilename, state, title}) => (
         __html: 'window.__state = ' + renderToJSON(state)
       }}/>
 
-      {jsFilename ? <script src={`/${jsFilename}`}/> : null}
+      {jsFilename ? <script src={`${jsFilename}`}/> : null}
     </body>
   </html>
 )

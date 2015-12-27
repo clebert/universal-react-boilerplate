@@ -1,4 +1,6 @@
 import convert from 'koa-convert'
+import createCompiler from 'webpack'
 import createHotMiddleware from 'webpack-koa-hot-middleware'
+import webpackConfig from '../configs/webpack-client'
 
-export default compiler => convert(createHotMiddleware(compiler))
+export default () => convert(createHotMiddleware(createCompiler(webpackConfig)))

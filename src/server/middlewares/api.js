@@ -6,9 +6,7 @@ import {json as parseJsonAsync} from 'co-body'
 const debug = createDebug('clebert:api')
 
 const syncStateAsync = async ctx => {
-  if (!ctx.accepts('json')) {
-    ctx.throw(406)
-  } else if (ctx.is('json')) {
+  if (ctx.is('json')) {
     ctx.session.state = await parseJsonAsync(ctx)
 
     ctx.status = 200
