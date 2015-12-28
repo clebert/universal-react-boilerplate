@@ -3,12 +3,10 @@ import createAppMiddleware from './middlewares/app'
 import createAssetsMiddleware from './middlewares/assets'
 import createCompiler from 'webpack'
 import createDebug from 'debug'
+import createDebugMiddleware from './middlewares/debug'
 import createDevMiddleware from './middlewares/dev'
 import createErrorMiddleware from './middlewares/error'
-import createFormatMiddleware from './middlewares/format'
 import createHotMiddleware from './middlewares/hot'
-import createIdMiddleware from './middlewares/id'
-import createInfoMiddleware from './middlewares/info'
 import createPathnameMiddleware from './middlewares/pathname'
 import {createServer} from 'http'
 import createSessionMiddleware from './middlewares/session'
@@ -26,9 +24,7 @@ koa.keys = [createUuid()]
 
 koa.use(createErrorMiddleware())
 koa.use(createSessionMiddleware())
-koa.use(createFormatMiddleware())
-koa.use(createIdMiddleware())
-koa.use(createInfoMiddleware())
+koa.use(createDebugMiddleware())
 koa.use(createPathnameMiddleware())
 
 if (devMode) {

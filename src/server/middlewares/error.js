@@ -32,8 +32,6 @@ const handleError = (ctx, error, {
 }
 
 export default options => async (ctx, next) => {
-  ctx.format = ctx.format || (message => message)
-
   try {
     await next()
 
