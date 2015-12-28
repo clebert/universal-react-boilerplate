@@ -1,6 +1,7 @@
 import createApiMiddleware from './middlewares/api'
 import createAppMiddleware from './middlewares/app'
 import createAssetsMiddleware from './middlewares/assets'
+import createCompiler from 'webpack'
 import createDebug from 'debug'
 import createDevMiddleware from './middlewares/dev'
 import createErrorMiddleware from './middlewares/error'
@@ -31,8 +32,10 @@ koa.use(createInfoMiddleware())
 koa.use(createPathnameMiddleware())
 
 if (devMode) {
-  koa.use(createDevMiddleware(webpackConfig))
-  koa.use(createHotMiddleware(webpackConfig))
+  const compiler = createCompiler(webpackConfig)
+
+  koa.use(createDevMiddleware(compiler, webpackConfig))
+  koa.use(createHotMiddleware(compiler))
 }
 
 koa.use(createAssetsMiddleware())

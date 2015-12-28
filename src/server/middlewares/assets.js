@@ -19,8 +19,8 @@ const send = async (ctx, filename, maxAge) => {
 
   debug(ctx.format(`respond with status code ${ctx.status}`))
 
-  ctx.type = extname(basename(filename))
   ctx.body = createReadStream(filename)
+  ctx.type = extname(basename(filename))
 }
 
 export default (maxAge = 0) => {

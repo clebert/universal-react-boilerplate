@@ -86,13 +86,13 @@ module.exports = {
     publicPath: '/assets/'
   },
   plugins: [
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(true)
   ].concat(devMode ? [
     new webpack.HotModuleReplacementPlugin()
   ] : [
     new AssetsPlugin({filename: './lib/assets.json'}),
     new ExtractTextPlugin(`client${devMode ? '' : '.[hash]'}.css`),
-    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.UglifyJsPlugin({
       comments: false,
       compress: {warnings: false}
