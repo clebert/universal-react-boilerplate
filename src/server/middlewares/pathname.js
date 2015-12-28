@@ -1,29 +1,26 @@
 import createDebug from 'debug'
-import formatMessage from '../utils/format-message'
 import {format as formatUrl, parse as parseUrl} from 'url'
 
 const debug = createDebug('clebert:pathname')
 
 const normalize = p => p === '/' ? p : p.replace(/\/+/g, '/').replace(/\/$/, '')
 
-export default () => {
-  return async (ctx, next) => {
-    const result = parseUrl(ctx.originalUrl)
+export default () => async (ctx, next) => {
+  const result = parseUrl(ctx.originalUrl)
 
-    const {pathname: originalPathname} = result
+  const {pathname: originalPathname} = result
 
-    const pathname = normalize(originalPathname)
+  const pathname = normalize(originalPathname)
 
-    if (pathname !== originalPathname) {
-      const url = formatUrl({...result, pathname})
+  if (pathname !== originalPathname) {
+    const url = formatUrl({...result, pathname})
 
-      ctx.status = 301
+    ctx.status = 301
 
-      debug(formatMessage(`${ctx.status} redirect to ${url}`, ctx))
+    debug(ctx.format(`${ctx.status} redirect to ${url}`))
 
-      ctx.redirect(url)
-    } else {
-      await next()
-    }
+    ctx.redirect(url)
+  } else {
+    await next()
   }
 }

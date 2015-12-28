@@ -1,15 +1,14 @@
 import createDebug from 'debug'
 import {createRoutes, match, RoutingContext} from 'react-router'
 import {createStore} from 'redux'
-import formatMessage from '../utils/format-message'
 import Layout from '../components/layout'
 import {promisify} from 'bluebird'
 import {Provider} from 'react-redux'
 import React from 'react'
 import {readFileSync} from 'fs'
-import reducer from '../../shared/reducer'
+import reducer from '../../app/reducer'
 import {renderToStaticMarkup} from 'react-dom/server'
-import route from '../../shared/route'
+import route from '../../app/route'
 
 const devMode = process.env.NODE_ENV === 'development'
 
@@ -35,7 +34,7 @@ export default () => {
 
       ctx.status = 302
 
-      debug(formatMessage(`${ctx.status} redirect to ${url}`, ctx))
+      debug(ctx.format(`${ctx.status} redirect to ${url}`))
 
       ctx.redirect(url)
 
@@ -43,7 +42,7 @@ export default () => {
     } else if (renderProps) {
       ctx.status = 200
 
-      debug(formatMessage(`respond with status code ${ctx.status}`, ctx))
+      debug(ctx.format(`respond with status code ${ctx.status}`))
 
       const store = createStore(reducer, ctx.session.state || {})
 

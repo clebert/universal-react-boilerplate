@@ -1,46 +1,52 @@
 import createDebug from 'debug'
-import formatMessage from '../utils/format-message'
 import {parse as parseUrl} from 'url'
 
 const debug = createDebug('clebert:error')
 
-const redirectToErrorPage = ctx => {
-  const url = '/oops'
+const handleError = (ctx, error, {
+  createErrorMessage = ({message}) => ({error: message}),
+  errorPageUrl = '/oops',
+  shouldRedirectToErrorPage = ({originalUrl}) => {
+    const {pathname} = parseUrl(originalUrl)
 
-  ctx.status = 302
+    return ![/^\/api\//, /^\/assets\//, /^\/oops\/?$/].some(re => re.test(pathname))
+  }
+} = {}) => {
+  try {
+    if (errorPageUrl && shouldRedirectToErrorPage(ctx)) {
+      ctx.status = 302
 
-  debug(formatMessage(`${ctx.status} redirect to ${url}`, ctx))
+      debug(ctx.format(`${ctx.status} redirect to ${errorPageUrl}`))
 
-  ctx.redirect(url)
-}
+      ctx.redirect(errorPageUrl)
+    } else {
+      ctx.body = createErrorMessage(ctx, error)
+    }
+  } catch (error) {
+    debug(ctx.format('error handling failed'))
 
-const handleBadRequest = ctx => {
-  const {message, originalUrl} = ctx
-  const {pathname} = parseUrl(originalUrl)
+    ctx.status = 500
 
-  if (/^\/assets\//.test(pathname) || /^\/api\//.test(pathname) || /^\/oops\/?$/.test(pathname)) {
-    ctx.body = {error: message}
-  } else {
-    redirectToErrorPage(ctx)
+    ctx.body = ctx.message
   }
 }
 
-export default () => {
-  return async (ctx, next) => {
-    try {
-      await next()
+export default options => async (ctx, next) => {
+  ctx.format = ctx.format || (message => message)
 
-      const {status} = ctx
+  try {
+    await next()
 
-      if (status >= 400) {
-        debug(formatMessage(`handle status code ${status}`, ctx))
+    const {status} = ctx
 
-        handleBadRequest(ctx)
-      }
-    } catch (error) {
-      debug(formatMessage(error ? error.stack : 'unknown error', ctx))
+    if (status >= 400) {
+      debug(ctx.format(`handle status code ${status}`))
 
-      handleBadRequest(ctx)
+      handleError(ctx, null, options)
     }
+  } catch (error) {
+    debug(ctx.format(`handle ${(error ? error.stack : '') || 'unknown error'}`))
+
+    handleError(ctx, error, options)
   }
 }
