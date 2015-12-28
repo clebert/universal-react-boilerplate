@@ -43,7 +43,6 @@
     "koa-convert": "latest",
     "koa-generic-session": "latest",
     "koa-router": "next",
-    "koa-send": "latest",
     "lost": "latest",
     "node-uuid": "latest",
     "postcss-loader": "latest",

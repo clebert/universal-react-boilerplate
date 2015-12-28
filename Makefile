@@ -15,7 +15,7 @@ clean:
 	rm -rf ./lib/* && rm -rf ./assets/client*
 
 dev:
-	export BLUEBIRD_WARNINGS=0 && export NODE_ENV=development && export DEBUG=clebert* && make clean && make build-server && node ./lib/server.js
+	export NODE_ENV=development && export DEBUG=clebert* && make clean && make build-server && node ./lib/server.js
 
 start:
 	export NODE_ENV=production && export DEBUG=clebert* && make clean && make build-client && make build-server && node ./lib/server.js
