@@ -20,6 +20,8 @@ const Layout = ({children, cssFilename, jsFilename, state, title}) => (
         'user-scalable=no'
       ].join(', ')}/>
 
+      <link rel='icon' href='/assets/favicon.ico'/>
+
       {cssFilename ? <link rel='stylesheet' href={`${cssFilename}`}/> : null}
     </head>
     <body>

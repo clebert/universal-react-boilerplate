@@ -1,4 +1,4 @@
-assets/
+assets/client*
 .DS_Store
 lib/
 node_modules/
