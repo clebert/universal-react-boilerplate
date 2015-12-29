@@ -1,23 +1,21 @@
 import {createHistory} from 'history'
-import {createStore} from 'redux'
+import {applyMiddleware, createStore} from 'redux'
+import promiseMiddleware from 'redux-promise'
 import {Provider} from 'react-redux'
 import React from 'react'
 import reducer from '../app/reducer'
 import {render} from 'react-dom'
 import route from '../app/route'
 import {Router} from 'react-router'
-import sendJsonAsync from './utils/send-json-async'
 import {pushPath, syncReduxAndRouter} from 'redux-simple-router'
 
-const store = createStore(reducer, window.__state)
+const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore)
 
-store.subscribe(async () => {
-  try {
-    await sendJsonAsync(store.getState(), '/api/sync-state')
-  } catch (e) {
-    if (!/^\/oops\/?$/.test(window.location.pathname)) {
-      store.dispatch(pushPath('/oops'))
-    }
+const store = createStoreWithMiddleware(reducer, window.__state)
+
+store.subscribe(() => {
+  if (store.getState().error != null && !/^\/oops\/?$/.test(window.location.pathname)) {
+    store.dispatch(pushPath('/oops'))
   }
 })
 

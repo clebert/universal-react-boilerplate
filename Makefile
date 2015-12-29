@@ -6,10 +6,10 @@ SHELL := /bin/bash
 .PHONY: build-client build-server clean dev start test
 
 build-client:
-	webpack --config=./src/server/configs/webpack-client.js --progress
+	webpack --config=./src/client/webpack.config.js --progress
 
 build-server:
-	webpack --config=./src/server/configs/webpack-server.js --progress && rm -f ./lib/server.css
+	webpack --config=./src/server/webpack.config.js --progress && rm -f ./lib/server.css
 
 clean:
 	rm -rf ./lib/* && rm -rf ./assets/client*

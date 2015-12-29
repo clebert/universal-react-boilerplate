@@ -1,6 +1,7 @@
 import createDebug from 'debug'
 import {createRoutes, match, RoutingContext} from 'react-router'
 import {createStore} from 'redux'
+import {getBookmarksAsync} from '../api'
 import Layout from '../components/layout'
 import {promisify} from 'bluebird'
 import {Provider} from 'react-redux'
@@ -9,6 +10,7 @@ import {readFileSync} from 'fs'
 import reducer from '../../app/reducer'
 import {renderToStaticMarkup} from 'react-dom/server'
 import route from '../../app/route'
+import {updateBookmarks} from '../actions'
 
 const devMode = process.env.NODE_ENV === 'development'
 
@@ -45,6 +47,8 @@ export default () => {
       debug(ctx.format(`respond with status code ${ctx.status}`))
 
       const store = createStore(reducer, ctx.session.state || {})
+
+      store.dispatch(updateBookmarks(await getBookmarksAsync()))
 
       ctx.body = '<!DOCTYPE html>' + renderToStaticMarkup((
         <Layout cssFilename={Assets['css']} jsFilename={Assets['js']} state={store.getState()} title={title}>

@@ -8,7 +8,7 @@ const debug = createDebug('clebert:assets')
 
 const readStatsAsync = promisify(readStats)
 
-const send = async (ctx, filename, maxAge) => {
+const sendAsync = async (ctx, filename, maxAge) => {
   const stats = await readStatsAsync(filename)
 
   ctx.set('Cache-Control', `max-age=${maxAge / 1000 | 0}`)
@@ -27,7 +27,7 @@ export default (maxAge = 0) => {
   const router = createRouter()
 
   for (const filename of readdirSync('./assets/')) {
-    router.get(`/assets/${filename}`, async ctx => await send(ctx, `./assets/${filename}`, maxAge))
+    router.get(`/assets/${filename}`, async ctx => await sendAsync(ctx, `./assets/${filename}`, maxAge))
   }
 
   return router.routes()

@@ -105,5 +105,8 @@ module.exports = {
   ].concat(devMode ? [] : [
     cssnano()
   ]),
+  resolve: {
+    alias: {ActionCreators$: path.resolve('./src/client/actions.js')}
+  },
   target: 'web'
 }

@@ -12,7 +12,7 @@ import {createServer} from 'http'
 import createSessionMiddleware from './middlewares/session'
 import {v4 as createUuid} from 'node-uuid'
 import Koa from 'koa'
-import webpackConfig from './configs/webpack-client'
+import webpackConfig from '../client/webpack.config'
 
 const devMode = process.env.NODE_ENV === 'development'
 

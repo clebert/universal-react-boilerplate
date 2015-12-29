@@ -1,27 +1,30 @@
+import * as api from '../api'
 import createDebug from 'debug'
 import createRouter from 'koa-router'
 import {json as parseJsonAsync} from 'co-body'
 
 const debug = createDebug('clebert:api')
 
-const syncStateAsync = async ctx => {
-  if (ctx.is('json')) {
-    ctx.session.state = await parseJsonAsync(ctx)
+const registerRoute = (router, name) => {
+  const getDataAsync = api[`${name}Async`]
 
-    ctx.status = 200
+  router.post(`/api/${name}`, async ctx => {
+    if (ctx.is('json')) {
+      ctx.body = await getDataAsync(await parseJsonAsync(ctx))
 
-    debug(ctx.format(`respond with status code ${ctx.status}`))
+      ctx.status = 200
 
-    ctx.body = {}
-  } else {
-    ctx.throw(415)
-  }
+      debug(ctx.format(`respond with status code ${ctx.status}`))
+    } else {
+      ctx.throw(415)
+    }
+  })
 }
 
 export default () => {
   const router = createRouter()
 
-  router.post('/api/sync-state', syncStateAsync)
+  registerRoute(router, 'getBookmarks')
 
   return router.routes()
 }

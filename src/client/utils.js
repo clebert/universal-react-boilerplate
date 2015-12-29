@@ -1,4 +1,4 @@
-export default (data, url) => {
+export const requestJsonAsync = (url, data = {}) => {
   return new Promise((resolve, reject) => {
     const xhr = new window.XMLHttpRequest()
 

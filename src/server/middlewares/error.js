@@ -20,6 +20,8 @@ const handleError = (ctx, error, {
 
       ctx.redirect(errorPageUrl)
     } else {
+      debug(ctx.format(`respond with status code ${ctx.status}`))
+
       ctx.body = createErrorMessage(ctx, error)
     }
   } catch (error) {
@@ -44,6 +46,8 @@ export default options => async (ctx, next) => {
     }
   } catch (error) {
     debug(ctx.format(`handle ${(error ? error.stack : '') || 'unknown error'}`))
+
+    ctx.status = error.status || 500
 
     handleError(ctx, error, options)
   }

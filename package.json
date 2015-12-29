@@ -54,6 +54,7 @@
     "react-router": "latest",
     "redux": "latest",
     "redux-actions": "latest",
+    "redux-promise": "latest",
     "redux-simple-router": "latest",
     "source-map-support": "latest",
     "style-loader": "latest",

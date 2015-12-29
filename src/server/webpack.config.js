@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path')
 const webpack = require('webpack')
 
 const devMode = process.env.NODE_ENV === 'development'
@@ -14,7 +15,10 @@ module.exports = {
   ],
   debug: true,
   devtool: '#inline-source-map',
-  externals: /^[a-zA-Z0-9]/,
+  externals: [
+    {ActionCreators: false},
+    /^[a-zA-Z0-9]/
+  ],
   module: {
     loaders: [
       {
@@ -66,5 +70,8 @@ module.exports = {
     new ExtractTextPlugin('server.css'),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    alias: {ActionCreators$: path.resolve('./src/server/actions.js')}
+  },
   target: 'node'
 }
