@@ -1,5 +1,6 @@
 import * as ActionCreators from 'ActionCreators'
 import {bindActionCreators} from 'redux'
+import bookmarksSelector from '../selectors/bookmarks'
 import {connect} from 'react-redux'
 import React, {PropTypes} from 'react'
 
@@ -8,6 +9,10 @@ const Counter = props => {
 
   return (
     <div>
+      <h2>Bookmarks</h2>
+
+      <button onClick={updateBookmarks}>Update</button>
+
       <ul>
         {bookmarks.map(({name, url}) => (
           <li key={name}>
@@ -15,13 +20,11 @@ const Counter = props => {
           </li>
         ))}
       </ul>
-      {' '}
-      <button onClick={updateBookmarks}>Update</button>
     </div>
   )
 }
 
-export default connect(({bookmarks}) => ({bookmarks}), dispatch => {
+export default connect(bookmarksSelector, dispatch => {
   return bindActionCreators(ActionCreators, dispatch)
 })(Counter)
 
