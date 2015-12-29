@@ -15,14 +15,20 @@ git clone https://github.com/clebert/universal-react-boilerplate.git
 
 ## Usage
 
-Start server in development mode:
+To start the server in development mode:
 
 ```sh
 make dev
 ```
 
-Start server in production mode:
+To start the server in production mode:
 
 ```sh
 make start
+```
+
+To run the tests:
+
+```sh
+make test
 ```
