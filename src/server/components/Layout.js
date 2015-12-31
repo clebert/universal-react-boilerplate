@@ -11,7 +11,7 @@ const renderToJSON = object => {
 const Layout = ({children, cssFilename, jsFilename, state, title}) => (
   <html lang='en'>
     <head>
-      <title>{title}</title>
+      <title>{title || ''}</title>
 
       <meta name='viewport' content={[
         'width=device-width',
@@ -30,7 +30,7 @@ const Layout = ({children, cssFilename, jsFilename, state, title}) => (
       }}/>
 
       <script dangerouslySetInnerHTML={{
-        __html: 'window.__state = ' + renderToJSON(state)
+        __html: `window.__state = ${renderToJSON(state || {})}`
       }}/>
 
       {jsFilename ? <script src={`${jsFilename}`}/> : null}
@@ -44,6 +44,6 @@ Layout.propTypes = {
   children: PropTypes.element,
   cssFilename: PropTypes.string,
   jsFilename: PropTypes.string,
-  state: PropTypes.object.isRequired,
-  title: PropTypes.string.isRequired
+  state: PropTypes.object,
+  title: PropTypes.string
 }

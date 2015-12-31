@@ -1,3 +1,4 @@
 import {createAction} from 'redux-actions'
 
-export const updateBookmarks = createAction('UPDATE_BOOKMARKS')
+export const deleteBookmarks = createAction('__NOOP')
+export const updateBookmarks = createAction('__NOOP')
