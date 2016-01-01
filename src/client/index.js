@@ -12,12 +12,6 @@ const createStoreWithMiddleware = applyMiddleware(promiseMiddleware)(createStore
 
 const store = createStoreWithMiddleware(reducer, window.__state)
 
-store.subscribe(() => {
-  if (store.getState().error != null && !/^\/oops\/?$/.test(window.location.pathname)) {
-    browserHistory.push('/oops')
-  }
-})
-
 render((
   <Provider store={store}>
     <Router history={browserHistory}>{route}</Router>
