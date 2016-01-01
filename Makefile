@@ -3,7 +3,7 @@ MAKEFLAGS = -j1
 PATH := ./node_modules/.bin:$(PATH)
 SHELL := /bin/bash
 
-.PHONY: build-client build-server clean dev start test
+.PHONY: build-client build-server clean dev start test upgrade
 
 build-client:
 	webpack --config=./src/client/webpack.config.js --progress
@@ -22,3 +22,6 @@ start:
 
 test:
 	export NODE_ENV=test && export DEBUG=clebert* && make clean && make build-server && node ./lib/test.js
+
+upgrade:
+	ncu --upgradeAll
