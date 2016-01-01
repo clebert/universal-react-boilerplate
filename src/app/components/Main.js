@@ -3,8 +3,8 @@ import {bindActionCreators} from 'redux'
 import BookmarkList from './BookmarkList'
 import bookmarksErrorSelector from '../selectors/bookmarksError'
 import {connect} from 'react-redux'
+import HostnameList from './HostnameList'
 import React, {Component, PropTypes} from 'react'
-import TagList from './TagList'
 
 class Main extends Component {
   static propTypes = {
@@ -49,7 +49,7 @@ class Main extends Component {
     return (
       <div>
         <BookmarkList/>
-        <TagList/>
+        <HostnameList/>
       </div>
     )
   }

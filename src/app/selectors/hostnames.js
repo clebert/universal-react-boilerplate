@@ -1,11 +1,12 @@
 import bookmarksSelector from './bookmarks'
 import {createSelector} from 'reselect'
+import parseUrl from 'url-parse'
 import unique from 'lodash/array/unique'
 
 export default createSelector(bookmarksSelector, ({bookmarks}) => {
   return {
-    tags: unique(bookmarks.reduce((tags, bookmark) => {
-      return [...tags, ...bookmark.tags]
-    }, []).sort())
+    hostnames: unique(bookmarks.reduce((hostnames, {url}) => {
+      return [...hostnames, parseUrl(url, true).hostname]
+    }, []))
   }
 })

@@ -3,17 +3,17 @@ export const getBookmarksAsync = async () => {
 
   if (n < 1 / 3) {
     return [
-      {name: 'Bookmark 1', url: 'http://clebert.io/', tags: ['tag1', 'tag0']},
-      {name: 'Bookmark 2', url: 'http://clebert.io/', tags: ['tag2', 'tag1']},
-      {name: 'Bookmark 3', url: 'http://clebert.io/', tags: ['tag3', 'tag2']}
+      {name: 'GitHub', url: 'https://github.com/'},
+      {name: 'Twitter', url: 'https://twitter.com/'},
+      {name: 'Flickr', url: 'https://www.flickr.com/'}
     ]
   }
 
   if (n < 2 / 3) {
     return [
-      {name: 'Bookmark 4', url: 'http://clebert.io/', tags: ['tag4', 'tag3']},
-      {name: 'Bookmark 5', url: 'http://clebert.io/', tags: ['tag5', 'tag4']},
-      {name: 'Bookmark 6', url: 'http://clebert.io/', tags: ['tag6', 'tag5']}
+      {name: 'Google', url: 'https://www.google.com'},
+      {name: 'Bing', url: 'https://www.bing.com/'},
+      {name: 'Yahoo', url: 'https://search.yahoo.com/'}
     ]
   }
 
