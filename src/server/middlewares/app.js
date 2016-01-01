@@ -1,5 +1,5 @@
 import createDebug from 'debug'
-import {createRoutes, match, RoutingContext} from 'react-router'
+import {createRoutes, match, RouterContext} from 'react-router'
 import {createStore} from 'redux'
 import Layout from '../components/Layout'
 import {promisify} from 'bluebird'
@@ -50,7 +50,7 @@ export default () => {
         <Layout cssFilename={Assets['css']} jsFilename={Assets['js']} state={store.getState()} title={title}>
           {devMode ? null : (
             <Provider store={store}>
-              <RoutingContext {...renderProps}/>
+              <RouterContext {...renderProps}/>
             </Provider>
           )}
         </Layout>
