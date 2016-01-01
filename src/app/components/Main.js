@@ -2,7 +2,6 @@ import * as ActionCreators from 'ActionCreators'
 import {bindActionCreators} from 'redux'
 import BookmarkList from './BookmarkList'
 import bookmarksErrorSelector from '../selectors/bookmarksError'
-import {browserHistory} from 'react-router'
 import {connect} from 'react-redux'
 import React, {Component, PropTypes} from 'react'
 import TagList from './TagList'
@@ -12,6 +11,7 @@ class Main extends Component {
     bookmarksError: PropTypes.instanceOf(Error),
     deleteBookmarks: PropTypes.func.isRequired,
     invalidateBookmarks: PropTypes.func.isRequired,
+    pushPath: PropTypes.func.isRequired,
     updateBookmarks: PropTypes.func.isRequired
   }
 
@@ -35,7 +35,7 @@ class Main extends Component {
 
   componentWillReceiveProps ({bookmarksError}) {
     if (bookmarksError) {
-      browserHistory.push('/oops')
+      this.props.pushPath('/oops')
     }
   }
 
