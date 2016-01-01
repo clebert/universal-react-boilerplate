@@ -1,3 +1,5 @@
 import React from 'react'
 
-export default () => <div>Oops</div>
+export default () => (
+  <div>Oops</div>
+)
