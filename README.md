@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/clebert/universal-react-boilerplate.svg?branch=master)](https://travis-ci.org/clebert/universal-react-boilerplate)
 
-> [WIP] Universal JavaScript Application Boilerplate with React, Redux and Webpack
+> Universal JavaScript Application Boilerplate with React, Redux and Webpack
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
 
